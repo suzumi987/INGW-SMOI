@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="tis-620" ?>
+<EquinoxMessage from="SMOI1.E11.0" via="SMOI1.E11.0" session="934987975:SMOI1.ES05.httpPOST.0" timeout="10" ret="0"
+                diag="">
+    <EquinoxRawData orig="SMOI1.E01.0.0" to="SMOI1.ES00.0" name="db" type="response" ctype="db"
+                    invoke="SMOI1-Destination-20170525171937-17" ret="0">
+        <message command="search" resultcode="0" id="SMOI1-Destination-20170525171937-17" objecttype="Destination"
+                 key0="0" key1="3BOSC" key2="def" key3="def" key4="def">
+            <data value="1|3BOSC|3BOSC.ais-realm.com"/>
+        </message>
+    </EquinoxRawData>
+    <EquinoxInstance>
+        <value val="W_E01_BOS_DESTINATION::eJyNkUFv0zAYhvttQvyTnlwraZp0QcqhGx1UomvUTOyInORbakji1HZYe+XCX9lhh3FAcEf8FK4DBBduOKtEo2mo+2Sf3vd9Pus1dG4HOq/ZW0ZrzXP6nKnFlP2AxzBHJWqZYO+EFdiLNCvTeN0bW3ZvylZz1PIPdP5jmpxEu01h+Ozs1fH4dLfzcPYA3NOoP3oAKooOpXiDcrc1ms4md98H1UJgjBSXK1qIFHOap6yiqeozOimXNZfrqI5VInmM0mArUapvYIKPoJJ4zlejJBF1qXmZTcrz77C3LX4kJVu/4Oo3wD6QzVxBgXoh0pcoFRc3sNdo7zzQIstyTO/CWkkTZfeonmXGJqbQo2ObeJ7fdyy7ucQeNAJxGsmEJao6162g51u+a8LOAbG303cGLjFhQqzmDAlxCbu46bT8nyHlqgrD6Ba23ypQFYLTGFlJealM6QnSo5xjqee4rFFttoPvDPyDoT/8CF+hYhkGW5zoFipovaybMh1YXaV4Ggwcd9hV2UVg2VZX8wJFrQPf2C4//Pr5/gya37XpOLJcutC6CmfRKb3+t8x9cr/e1PMFLPsaDP/TBvUXoF0LwQ==::2"/>
+    </EquinoxInstance>
+</EquinoxMessage>

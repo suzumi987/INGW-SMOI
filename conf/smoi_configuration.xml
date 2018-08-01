@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration>
+	<cold>
+		<indicator-version1 value="false" />
+		<appilcation group="smoi" service="smoi" instance="0" />
+		<host ip="0.0.0.0" port="9908" />
+		<queue-thread-pool value="2000" />
+		<library directory="lib/" name="AFSMOI.jar" function="smoi.control.SmoiMain" />
+		<!-- log-->
+		<log-Summary value="smoi_Summary" />
+		<log-Detail value="smoi_Detail" />
+
+		<log-debug value="1" />
+	</cold>
+	<warm>
+		<log value="FATAL|ERROR|WARN|INFO|DEBUG" />
+
+		<!-- Configuration Destination -->
+		<Resource-Name-NodeX value="smoi.ES05.0.0" />
+		<Resource-Name-DS2A value="smoi.ES03.ds2a" />
+		<Resource-Name-SMOI_FET value="smoi.ES04.SMOI" />
+		<Resource-Name-PPGW_FET value="smoi.ES04.PPGW" />
+		<Resource-Name-BSSbroker value="smoi.ES04.BSSbroker" />
+		<Resource-Name-BOS value="smoi.ES06.BOS" />
+
+		<Default-timeout value="10" />
+		<Tm-NodeX value="10" />
+		<Tm-DS2A value="10" />
+		<Tm-SMOI_FET value="10" />
+		<Tm-PPGW_FET value="10" />
+		<Tm-BSSbroker value="20" />
+		<Tm-BOS value="20" />
+
+	</warm>
+</configuration>

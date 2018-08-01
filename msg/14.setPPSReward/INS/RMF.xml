@@ -1,0 +1,33 @@
+<EquinoxMessage from="SMOI.E11.0" via="SMOI.E11.0" session="1:SMOI.ES05.SMOI.0" timeout="10" ret="0" diag="">
+	<EquinoxRawData orig="SMOI.ES03.DS2A" to="SMOI.ES00.SMOI" oid="0.0.17.1218.8.7.0" name="LDAP" type="response" ctype="extended" invoke="[:invoke:]" ecode="200" method="POST" url="" ret="0">
+
+					
+		<ERDHearder />
+	<ERDData value="{
+    &quot;resultCode&quot;:&quot;200f00&quot;,
+    &quot;developerMessage&quot;:&quot;Success&quot;,
+    &quot;counterId&quot;:[
+        {
+            &quot;counterId&quot;:&quot;200500&quot;,
+            &quot;balance&quot;:&quot;500&quot;,
+            &quot;startTime&quot;:&quot;20160805:151930&quot;,
+            &quot;expiryTime&quot;:&quot;20160806:151930&quot;,
+            &quot;resourceId&quot;:[&quot;1020004&quot;]
+        },
+        {
+            &quot;counterId&quot;:&quot;200100&quot;,
+            &quot;balance&quot;:&quot;1000&quot;,
+            &quot;startTime&quot;:&quot;20160805:151930&quot;,
+            &quot;expiryTime&quot;:&quot;20160806:151930&quot;,
+            &quot;resourceId&quot;:[&quot;1000008&quot;]
+        }
+    ]
+}">
+	</ERDData>
+
+
+	</EquinoxRawData>
+	<EquinoxInstance>
+		<value val="[:instance:]" />
+	</EquinoxInstance>
+</EquinoxMessage>

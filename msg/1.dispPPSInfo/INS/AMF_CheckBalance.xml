@@ -1,0 +1,8 @@
+<EquinoxMessage from="SMOI3.E11.0" via="SMOI3.E11.0" session="3:SMOI3.ES05.httpPOST.0" timeout="10" ret="0" diag=""><EquinoxRawData orig="SMOI3.ES03.AMF.0" to="SMOI3.ES00.0" name="LDAP" type="response" ctype="extended" invoke="[:invoke:]" ecode="0" oid="0.0.17.1218.8.7.9" ret="0"><AVP type="methodVersion"><vals value="1" /></AVP><AVP type="accountInfo"><vals value="1,20160517:203000,20160516:203000,20160515:203000,20160514:203000,365,3,1,2,0" /></AVP><AVP type="counters"><vals value="200101,-2000,20160101:093000,20170601:163000,500000,-5000, 1:102310000:Monetary voice onnet|2:112530000:sms onnet ,4000,MaintPromo1|1.0.0|promo1" /><vals value="200102,-3000,20160102:093000,20160602:163000,500000,-3000, 1:102310000:Monetary voice onnet|2:112530000:sms onnet ,4000,MaintPromo2|1.0.0|promo2" /><vals value="200501,4000,20160103:093000,20170603:163000,500000,-50, 1:102310000:Monetary voice onnet|2:112530000:sms onnet ,4000,MaintPromo3|1.0.0|promo3" /><vals value="200010,6000,20160105:093000,20160605:163000,500000,-50, 1:102310000:Monetary voice onnet|2:112530000:sms onnet ,4000,MaintPromo4|1.0.0|promo4" /><vals value="200600,-2000,20160106:093000,20160606:163000,500000,-50, 1:102310000:Monetary voice onnet|2:112530000:sms onnet ,4000," /><vals value="200700,6000,20160105:093000,20160105:163000,500000,-50, 1:102310000:Monetary voice onnet|2:112530000:sms onnet ,4000,MaintPromo5|1.0.0|promo5" /></AVP></EquinoxRawData>
+
+
+
+	<EquinoxInstance>
+		<value val="[:instance:]" />
+	</EquinoxInstance>
+</EquinoxMessage>

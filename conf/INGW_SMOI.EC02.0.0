@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+        <cold>
+                <HomeDirectory value="/opt/equinoxAS" />
+                <Application group="SMOI" service="SMOI" instance="0" />
+                <Listener port="5123" backlog="256" />
+                <Library directory="/opt/equinoxAS/lib/" function="phoebe.eqx.smoi.control.SmoiMain" />
+                <ECProperties>
+                        <ThreadPool value="2" />
+                        <AutoCpuUtilize value="true" />
+                        <CpuUtilizeList value="4,5,6,7,8,9,10,11,12,13,14,15,16" />
+                        <JavaOption value="-server" />
+                        <JavaOption value="-XX:CompileThreshold=1000" />
+                        <JavaOption value="-XX:ThreadStackSize=65535" />
+                        <JavaOption value="-XX:MainThreadStackSize=65535" />
+                        <JavaOption value="-Xms1G" />
+                        <JavaOption value="-Xmx1G" />
+                <JavaOption value="-Djavax.xml.xpath.XPathFactory:http://java.sun.com/jaxp/xpath/dom=com.sun.org.apache.xpath.internal.jaxp.XPathFactoryImpl"
+ />
+                        <JavaOption value="-Djava.version=1.6" />
+                        <JavaLibrary value="ec02_library.jar"/>
+                        <JavaLibrary value="INGW_SMOI_2.7.0-01_01.jar"/>
+                        <JavaLibrary value="eqxmsg_3_4_0.jar" />
+                        <JavaLibrary value="gson-2.2.2.jar" />
+                        <JavaLibrary value="joda-time-2.9.4.jar"/>
+                </ECProperties>
+        </cold>
+        <warm>
+        <SFLOG value="FATAL|ERROR|WARN|INFO|DEBUG" />
+        <AFLOG value="FATAL|ERROR|WARN|INFO|DEBUG" />
+        <StatInterval value="2" />
+        <HousekeeperInterval value="10" />
+        <RestartDelay value="10" />
+        <ServerMaxSession value="10" />
+        <ServerReadTimeout value="30" />
+        <ServerWriteTimeout value="30" />
+        <ServerIdleTimeout value="30" />
+        <IncomingMsgDecode value="true"/>
+        <OutgoingMsgEncode value="true"/>
+        <IncomingMsgTrim value="true"/>
+        <OutgoingMsgTrim value="true"/>
+        <!-- Equinox Log Name -->
+        <LogName-Summary value="SMOI_Summary"/>
+        <LogName-Detail value="SMOI_Details"/>
+        <Write-LogSummary value="Enable"/>
+        <Write-LogDetail value="Enable"/>
+        <!-- Timeout Configuration -->
+        <Tm-DS2A value="5" />
+        <Tm-SMOI_FET value="10" />
+        <Tm-PPGW_FET value="10" />
+        <Tm-BSSBroker value="2" />
+        <Tm-BOS value="30" />
+        <Tm-AVATAR value="30" />
+        <Tm-INS value="10" />
+        <Tm-EQL value="5" />
+        <!-- Configuration Destination -->
+        <Resource-Name-Active-DS2A value="SMOI.ES03.DS2A" />
+        <Resource-Name-Active-SMOI_FET value="SMOI.ES04.SMOI" />
+        <Resource-Name-Active-PPGW_FET value="SMOI.ES04.PPGW" />
+        <Resource-Name-Active-BSSBroker value="SMOI.ES04.BSSBROKER" />
+        <Resource-Name-Active-BOS value="SMOI.ES06.BOS" />
+        <Resource-Name-Active-AVATAR value="SMOI.ES06.CBSETOPUP" />
+        <Resource-Name-Active-INS value="SMOI.ES04.INS" />
+        <Resource-Name-Active-EQL value="SMOI.ES04.EQL" />
+
+        <Resource-Name-Standby-DS2A value="SMOI.ES03.DS2A" />
+        <Resource-Name-Standby-SMOI_FET value="SMOI.ES04.SMOI" />
+        <Resource-Name-Standby-PPGW_FET value="SMOI.ES04.PPGW" />
+        <Resource-Name-Standby-BSSBroker value="SMOI.ES04.BSSBROKER" />
+        <Resource-Name-Standby-BOS value="SMOI.ES06.BOS" />
+        <Resource-Name-Standby-AVATAR value="SMOI.ES06.CBSETOPUP" />
+        <Resource-Name-Standby-INS value="SMOI.ES04.INS" />
+        <Resource-Name-Standby-EQL value="SMOI.ES04.EQL" />
+
+        <Resource-Name-Standby-DS2A-MaxRetry value="1" />
+        <Resource-Name-Standby-SMOI_FET-MaxRetry value="1" />
+        <Resource-Name-Standby-PPGW_FET-MaxRetry value="1" />
+        <Resource-Name-Standby-BSSBroker-MaxRetry value="1" />
+        <Resource-Name-Standby-BOS-MaxRetry value="1" />
+        <Resource-Name-Standby-AVATAR-MaxRetry value="1" />
+        <Resource-Name-Standby-E01-MaxRetry value="1" />
+        <Resource-Name-Standby-INS-MaxRetry value="0" />
+        <Resource-Name-Standby-EQL-MaxRetry value="3" />
+
+        <!--BOS GROUP -->
+
+        <!--
+        <BOS001 value="3BOSC103,3BOCB803,BOSCF103" />
+        <BOS002 value="3BOSC104,3BOCB804,BOSCF104" />
+        <BOS001 value="" />
+        <BOS002 value="" />-->
+        <!-- AVATAR -->
+        <AVATAR-BalanceType-SMS-Domestic-Prefix value="17" />
+        <AVATAR-BalanceType-Voice-Domestic-Prefix value="11" />
+
+        <!-- <Resource-Name-Active-BOS001 value="SMOI.ES06.Active-BOS" />
+        <Resource-Name-Standby-BOS001 value="SMOI.ES06.Standby-BOS" />
+        <Resource-Name-Active-BOS002 value="SMOI.ES06.Active-BOS002" /> -->
+
+        <!-- SMOI -->
+        <INGW_SMOI-Origin-Host value="smoi" />
+        <INGW_SMOI-Origin-Realm value="smoi.ais.co.th" />
+        <!-- BOS -->
+        <BOS-Destination-Host value="bos-Destination-Host" />
+        <BOS-Destination-Realm value="bos-Destination-Realm" />
+        <BOS-Location value="BOSCF,BOCBF,3BOSC,3BOCB" />
+        <AVATAR-Location value="3CBCB,3CBSC,AVATAR,3HWPC924" />
+        <INS-Location value="INS,3OCCB,INS3,SNOVA,INSTR" />
+
+        <AVATAR-BalanceType-SMS-Domestic-Prefix value="17" />
+        <AVATAR-BalanceType-Voice-Domestic-Prefix value="11" />
+        <AVATAR-BalanceType-Money-Prefix value="10" />
+        <AVATAR-BalanceType-RBTSong-Prefix value="29" />
+
+        <AVATAR-Free-Unit-ID-PRMMONEY value="102100001" />
+        <AVATAR-Free-Unit-ID-PRMMINUTE value="102100002" />
+        <AVATAR-Free-Unit-ID-PRMSM value="102100003" />
+        <AVATAR-Free-Unit-ID-FREERBTSONG value="1021000014" />        
+
+        <CCR-Access-Method value="2" />
+        <Resource-Id-PRMMONEY value="102100099" />
+        <Resource-Id-PRMSM value="172100099" />
+        <Resource-Id-PRMMINUTE value="112100099" />
+        <Resource-Id-FREECALLTIMES value="112100099" />
+        <Resource-Id-FREERBTSONG value="291100099" />
+        <Measure-Id-PRMMONEY value="11101" />
+        <Measure-Id-PRMSM value="109" />
+        <Measure-Id-PRMMINUTE value="102" />
+        <Measure-Id-FREECALLTIMES value="109" />
+        <Measure-Id-FREERBTSONG value="109" />
+
+        <Modify-WL-Alternate-Solution-Flag value="0" />
+        
+        <URL-EQL value="https://mint.com" />
+
+        <Resource-Name-Active-MD value="SMOI.ES04.MD"/>
+        <Resource-Name-Standby-MD value="SMOI.ES04.MD"/>
+        <Resource-Name-Standby-MD-MaxRetry value="3"/>
+        <Tm-MD value="10" />
+        <URL-MD value="http://10.252.56.7:44016/ilws/InstantLinkSOA?wsdl" />
+        <MD-Login-User value="SOAP_API" />
+        <MD-Login-Password value="SOAP_API" />
+        <AVATAR-BalanceType-Reward-Pocket value="502100001" />
+        <AVATAR-BalanceType-MainBalance value="MAIN_ACCOUNT" />
+        <AVATAR-Adjust-Channel-ID value="2" />
+        <AVATAR-Channel value="IVR"/>
+        </warm>
+</configuration>

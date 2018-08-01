@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="tis-620" ?>
+<EquinoxMessage diag="" from="SMOI1.ES00" ret="0" session="934987975:SMOI1.ES05.httpPOST.0" via="SMOI1.E11.0"
+                timeout="5">
+    <EquinoxRawData to="SMOI1.ES06.BOS" invoke="BOS:934987975" name="DIAMETER" ctype="Credit-Control" type="request">
+        <Session-Id value="010@4357;20170525;171937;461"/>
+        <Origin-Host value="toro"/>
+        <Origin-Realm value="toro.ais.co.th"/>
+        <Destination-Realm value="3BOSC.ais-realm.com"/>
+        <Auth-Application-Id value="4"/>
+        <Service-Context-Id value="AccountQuery@ais.co.th"/>
+        <CC-Request-Type value="4"/>
+        <CC-Request-Number value="0"/>
+        <Destination-Host value="3BOSC"/>
+        <Event-Timestamp value="3704696377"/>
+        <Service-Information>
+            <IN-Information>
+                <Access-Method value="2"/>
+                <Query-Type value="0"/>
+            </IN-Information>
+        </Service-Information>
+        <Subscription-Id>
+            <Subscription-Id-Type value="0"/>
+            <Subscription-Id-Data value="66909500038"/>
+        </Subscription-Id>
+    </EquinoxRawData>
+    <EquinoxRawData to="SMOI1.E06.0" name="EQLOG" type="noreply">
+        <log name="LogDetail"
+             value="SESSIONID=4357|INVOKE=934987975|STATE=W_E01_BOS_DESTINATION|MSISDN=66909500038|COMMAND=dispPPSInfo|INPUT=ObjectType=Destination&amp;resultcode=0&amp;description=&amp;key0=0&amp;key1=3BOSC&amp;key2=def&amp;key3=def&amp;key4=def&amp;data=1|3BOSC|3BOSC.ais-realm.com|NEXTSTATE=W_BOS_DCC|OUTPUT=&lt;Session-Id value=&quot;010@4357;20170525;171937;461&quot;/&gt;&lt;Origin-Host value=&quot;toro&quot;/&gt;&lt;Origin-Realm value=&quot;toro.ais.co.th&quot;/&gt;&lt;Destination-Realm value=&quot;3BOSC.ais-realm.com&quot;/&gt;&lt;Auth-Application-Id value=&quot;4&quot;/&gt;&lt;Service-Context-Id value=&quot;AccountQuery@ais.co.th&quot;/&gt;&lt;CC-Request-Type value=&quot;4&quot;/&gt;&lt;CC-Request-Number value=&quot;0&quot;/&gt;&lt;Destination-Host value=&quot;3BOSC&quot;/&gt;&lt;Event-Timestamp value=&quot;3704696377&quot;/&gt;&lt;Service-Information&gt;&lt;IN-Information&gt;&lt;Access-Method value=&quot;2&quot;/&gt;&lt;Query-Type value=&quot;0&quot;/&gt;&lt;/IN-Information&gt;&lt;/Service-Information&gt;&lt;Subscription-Id&gt;&lt;Subscription-Id-Type value=&quot;0&quot;/&gt;&lt;Subscription-Id-Data value=&quot;66909500038&quot;/&gt;&lt;/Subscription-Id&gt;"/>
+    </EquinoxRawData>
+    <EquinoxRawData to="SMOI1.E04.0" name="EQSTAT" type="noreply">
+        <stats name="INGateway Receive E01 Query Destination Response Success" type="increment"/>
+        <stats name="INGateway Send BOS AccountQuery Request" type="increment"/>
+    </EquinoxRawData>
+    <EquinoxInstance>
+        <value val="W_BOS_DCC::eJyNk0Fv0zAUx/s2Ib5JT46VNE27IOXQjQ4q0bXUEzsiN3lLDUmc2s7WXrnwVThwGAcEd8RH4cgAwYUbTotoVYHKk+2D39+/99d7MjQa4B+P2IfVeUK50I5CnuU0lp9trvGMX3FaGZHRh1zPhvwr3IUJalmpGJ0znqPDDC+S6dLpu54z5IsJGvUTGv8QDc7YftF4/ODi6Wn/fL/Sev4PEWPHSj5HtV96n7V6+1VsOBrs+oNyJnGKFOcLmssEM5olvKSJbnE6KOaVUEtWTXWsxBSVxZay0J/APrwDpcJLsejFsawKI4p0UFx+gYNN43tK8eUjoX8AHAJZx2vI0cxk8gSVFvIWDurciw7wHUp93XFteKSe76lHOp2w5btevYnXrhNkNXqLNDJNM0x2nWyVtSKFusrMFr0TumFgK/hHxNtEy28HxFYgxK1Xl5CA8Otb+A1/XKFt2+bte0iELsdjtgIfbjVT51LQKfKCikLbAcRITzKBhZngvEK9dgKh3w6PumH3LXyEkqcYbXCymetoy2Uz4SZym1qLJGr7Qbep0+vI9dymETnKykShlb168/3bywuoJ+3RPnMDOjOmHI/YOb35Uyy49/f8+kO53g1Y/rs16heqKhnx::3"/>
+    </EquinoxInstance>
+</EquinoxMessage>

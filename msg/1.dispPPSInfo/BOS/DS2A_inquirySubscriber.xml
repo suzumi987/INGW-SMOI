@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="tis-620" ?>
+<EquinoxMessage from="SMOI1.E11.0" via="SMOI1.E11.0" session="934987975:SMOI1.ES05.httpPOST.0" timeout="10" ret="0"
+                diag="">
+    <EquinoxRawData orig="SMOI1.ES03.DS2A.0" to="SMOI1.ES00.0" name="LDAP" type="response" ctype="extended"
+                    invoke="InquiryMsisdn:934987975" ecode="0" oid="0.0.17.1218.8.7.0" ret="0">
+        <AVP type="methodVersion">
+            <vals value="6"/>
+        </AVP>
+        <AVP type="resultInfo">
+            <vals value="66909500038,111111111112345,1,1,,0,,0,7,,5,awn"/>
+        </AVP>
+        <AVP type="accountingInfo">
+            <vals value="600001,BOSCF1,66923012301,14001,,3BOSC,,"/>
+        </AVP>
+        <AVP type="toggledAccountingInfo">
+            <vals value=",,,,,,,,,"/>
+        </AVP>
+        <AVP type="prefixAccountingInfo">
+            <vals value=",,,,,,,,"/>
+        </AVP>
+    </EquinoxRawData>
+    <EquinoxInstance>
+        <value val="W_DS2A::eJyNkM9Og0AQh5mTb8KNzWJLKSYcRFE50BK2SY9mKWNZLX/KLlqfwFfxWA9GX8DnUePJm2gTmxgNznW++X6/DGhfA9o5v+SkUWJBTrjMQv4COxCjLJt6hsaI52gwxYs0uTZ8ahohX8Wo6nfQ/oCCEeuGouh4enrkT7pJb/wPnceYV5cXWHejh2x3v5ti4Tj40a991WDgUMeilPYeIRWyiiIWFGfPAFVWYoIElysi81KQBHlBRCFb2wzJwUJgoWJcNijV5sDp9Z2h7dj38AQVn6O71ZV6Lt1t0lBPuXKpLqVI3X7PsnU5v3KpSXUlciwb5Totdnv39nozhc/aJvEZtUimVBWN2YSsv8OsvV/3GlBzDa36YWP5ANlLsyM=::1"/>
+    </EquinoxInstance>
+</EquinoxMessage>

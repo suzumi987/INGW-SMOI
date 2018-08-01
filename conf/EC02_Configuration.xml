@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration>
+<reload-conf-interval value="60" />
+<service-resources>
+<service name="smoi">INGW_SMOI.EC02.0.0</service>
+</service-resources>
+</configuration>

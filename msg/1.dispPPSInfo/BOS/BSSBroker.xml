@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="tis-620" ?>
+<EquinoxMessage from="SMOI1.E11.0" via="SMOI1.E11.0" session="934987975:SMOI1.ES05.httpPOST.0" timeout="10" ret="0"
+                diag="">
+    <EquinoxRawData orig="SMOI1.ES04.BSSBROKER.0" to="SMOI1.ES00.0" name="HTTP" type="response" ctype="text/xml"
+                    invoke="BSSBroker:934987975" ecode="200" method="POST" url="/BSSBroker/Gateways/QuerySCPProfile"
+                    ret="0">
+        <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                          xmlns:inf="http://www.asiainfo.com/obd/InfoSyncDefines.obd"
+                          xmlns:com="http://www.asiainfo.com/obd/CommonComponents.obd">
+            <soapenv:Header/>
+            <soap:Body xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+                <ns1:do_QuerySCPProfileResponse xmlns:ns1="http://www.asiainfo.com/obd/InfoSyncDefines.obd"
+                                                xmlns:ns0="http://www.asiainfo.com/obd/CommonComponents.obd">
+                    <ns1:sResult>
+                        <ns0:_so_nbr>010@4357;20161118;150002;252</ns0:_so_nbr>
+                        <ns0:_bos_so_nbr>170512400263411</ns0:_bos_so_nbr>
+                        <ns0:_finish_date>2017-05-12T14:36:12</ns0:_finish_date>
+                        <ns0:_result_code>2021006</ns0:_result_code>
+                    </ns1:sResult>
+                </ns1:do_QuerySCPProfileResponse>
+            </soap:Body>
+        </soapenv:Envelope>
+    </EquinoxRawData>
+    <EquinoxInstance>
+        <value val="W_BSSbroker::eJytV1tv40QU7rTb5SIQCFQECMRNVCBs15c4aaiCNk3abaCXbN1tAQHLxJ6m09oedzxuGx554a/wgESrZbXLI7efshIPsLtcXnjjjOM2abfbut1N4k+OZ87nmXO+OWcGITQQrTHSIhrZ3NEC5hFf81xXc12s1SkOiCC8xolHRY2FgjO/Gsbb5G+EUJ+Zy4KIhSQUWoR5TLjmCE7DdjXEfuer2wgNruMtrCWC+toMjtfm8D30Bhobcwjfoi5RG+Eq4wEWlIVjjflDf6uuy5JQpM/GYBxYELUO8D0a6nFWOcedWRr/iwaHkL5jmZZuGZYNl/zq8C1bhfTJ9b72YtZqAhagrQR3P8CoajV1kWwmJBbqUieSb0Lw+7oATYskTnyh1sBL2WNT1/egYYHTNg3BDvtB1iIYZxqmMThHE7+ffbaSBqbT5iy5NzSCfj2HvyYZ21AbggRqNZBPx7qUllEs6zeHkLGbj3Oa48RTZ5m7se8LPZ/hHN5Rl7FPQTydzNQq3shnW6cxbvlEbRJOmZdZZ7EzIVZGGjcb0AIsw/VjPmIniSMSeicQG0Cpn524TmKX00jeH7CCquwiKK1ol6zS9bxeAyU1OQtYH5Vh61ZJqrOaiDW1GkU+ddPuasPrKfTnhxKJVHsmEZD17hAqAOZjrCWxYAHh6ixdJWqt40LkHNFdp5l/93KGZ85RZ3HYTnD7YOlZx5t2m0fy8V6FtKQ6pB1AltrnNfLLuJY6bIkJ7O9HRJefnP5p4o58sTrXyxywiH46R7j211OaBbNoHUl5epbazBT3cqS8XIMQdOuk5ajDejGOrJq+VDqfBC3Cz5hArjpO/Vg1ZPl2hsWil27vpqRxfGhV6IZ+CaZamjB1o6Tbpj1hlIyyVZooFHMqcirA1L9vFDm184Cl1h3e4L6KoIj0biFNnEnZkxxDOjuYsFk0b+UzbCwv5l1qR0zPNL5DLpjaiSg/KOF94n2AiA7arSznHxXZEHoHXThpK7LQWieu+Dj4A30xgi6gpWWAKw7As88BPP0MgKIBPPkUwEdzAGXZb1XCKHCjmQ8B3nob4PU3AT64BPDyKwBftgDOUdhHzmV2WD2fSY5HkO4NyfNI9hYvnm9W/Xu6xyXFwyfF6fONpF+a60DxvIzTp58DjJkAL7wEUL8McPEJgLUNAMsGqNYA3n0PoDgOMN8EcAnAyicAExWAV19Dg8MDoNUBZE0uOL+kWJO7Q5XLLSOo9s+BATSIHkOwxWQJh2HPw95b1tDQa3XUKd1QoQwtEsH/A5LjOzXmndM7NZuXV65NTy2d3hOGeHqnumNWc1A5ziRnG1CBT+3qzC00jo5v+L4Tiu/hSPNiE2uNcDOhvOMkLbn7ghIDtJAAYnnqQMMo4mSV7mRxhiMJRPpuN9Up3c93CI44a8xbJhwKx50sDRahnrTbPvFOsARTfExrUeZwQ5EBnjaUYrEM2cuQl2IUZIOSxh6MeXqY6DOEXXnZBmNrXDF6H9Mq2AoYK4oufyVFsRW8fQd57NqVhMDMa03YLK5S/3Yfwy3k0ThqNp2U/mKf/+KAUa1FcKjRMAafu0Sr+RTyZVaoUwME56XyeKlcuoF+QxGUh0qPjo0GcaVvrKMeFhV9FMquV5GFdjRub1eg6o4KGhCWiEoZun27989f36wgGVxDm3J0W1sTImouOEva7sHL7PePb+8uGR2OK8B/s0v1P6+dhPI=::4"/>
+    </EquinoxInstance>
+</EquinoxMessage>
