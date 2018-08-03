@@ -72,6 +72,7 @@ public class Conf {
     public static final String mainBalanceType = "AVATAR-BalanceType-MainBalance";
     public static final String avatar_channel = "AVATAR-Channel";
     public static final String avatar_ajd_channel_id = "AVATAR-Adjust-Channel-ID";
+    public static final String avatar_modiPPSCreditLimit_Control_state = "AVATAR-ModiPPSCreditLimit-Control-States";
     
     //public static final String bos_DestinationHost = "BOS-Destination-Host";
     //public static final String bos_DestinationRealm = "BOS-Destination-Realm";

@@ -198,9 +198,20 @@ public class StatAlarm {
     public static final String INGateway_Receive_MD_BSO_CBS_SUBSTATUS_Response_Error = "SMOI Receive MD BSO CBS_SUBSTATUS Response Error";
     public static final String INGateway_Receive_MD_Bad_BSO_CBS_SUBSTATUS_Response = "SMOI Receive MD Bad BSO CBS_SUBSTATUS Response";
     
+    public static final String INGATEWAY_RECEIVE_MD_BSO_CBS_NEGATIVE_RESPONSE_TIMEOUT = "SMOI Receive MD BSO CBS_NEGATIVE Response Timeout";
+    public static final String INGATEWAY_RECEIVE_MD_BSO_CBS_NEGATIVE_RESPONSE_REJECT = "SMOI Receive MD BSO CBS_NEGATIVE Response Reject";
+    public static final String INGATEWAY_RECEIVE_MD_BSO_CBS_NEGATIVE_RESPONSE_ABORT = "SMOI Receive MD BSO CBS_NEGATIVE Response Abort";
+    public static final String INGATEWAY_RECEIVE_MD_BSO_CBS_NEGATIVE_RESPONSE_ERROR = "SMOI Receive MD BSO CBS_NEGATIVE Response Error";
+    public static final String INGATEWAY_RECEIVE_MD_BAD_BSO_CBS_NEGATIVE_RESPONSE = "SMOI Receive MD Bad BSO CBS_NEGATIVE Response";
+    public static final String INGATEWAY_RECEIVE_MD_BSO_CBS_NEGATIVE_RESPONSE = "SMOI Receive MD BSO CBS_NEGATIVE Response";
+    
     public static final String INGATEWAY_SEND_HTTP_ACTIVATEPPSSINGSUB_RESPONSE_SUCCESS = "SMOI Send HTTP ActivatePPSSingSub Response Success";
     public static final String INGATEWAY_SEND_HTTP_ACTIVATEPPSSINGSUB_RESPONSE_ERROR = "SMOI Send HTTP ActivatePPSSingSub Response Error";
     public static final String INGATEWAY_SEND_MD_BSO_CBS_SUBSTATUS_REQUEST = "SMOI Send MD BSO CBS_SUBSTATUS Request";
+    public static final String INGATEWAY_SEND_MD_BSO_CBS_NEGATIVE_REQUEST = "SMOI Send MD BSO CBS_NEGATIVE Request";
     public static final String INGATEWAY_RECEIVE_MD_BSO_CBS_SUBSTATUS_RESPONSE = "SMOI Receive MD BSO CBS_SUBSTATUS Response";
     
+    // ModiPPSCreditLimit
+    public static final String INGATEWAY_SEND_HTTP_MODIPPSCREDITLIMIT_RESPONSE_SUCCESS = "SMOI Send HTTP ModiPPSCreditLimit Response Success";
+    public static final String INGATEWAY_SEND_HTTP_MODIPPSCREDITLIMIT_RESPONSE_ERROR = "SMOI Send HTTP ModiPPSCreditLimit Response Error";
 }

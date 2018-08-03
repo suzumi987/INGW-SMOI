@@ -605,6 +605,10 @@ public class SmoiMain extends AbstractAF implements IEC02 {
             	verifyAvatarAjdChannelId = verifyNumberConfigValue(avatarAjdChannelId, "\\d+");
             }
             
+            xPathExpression = xPath.compile("//configuration//warm//" + Conf.avatar_modiPPSCreditLimit_Control_state + "//@value");
+            String avatarModiPPSCreditLimitContState = xPathExpression.evaluate(xmlDocument, XPathConstants.STRING).toString();
+            boolean verifyAvatarModiPPSCreditLimitContState = !avatarModiPPSCreditLimitContState.isEmpty();
+            
             String resourceActiveIns = getWarmConfigValue(xPathExpression, xPath, Conf.resourceNameIns_Active, xmlDocument);
             boolean verifyResourceActiveIns = verifyConfigValue(resourceActiveIns, "\\w+(\\.ES04\\.)\\w+");
 
@@ -687,8 +691,8 @@ public class SmoiMain extends AbstractAF implements IEC02 {
             Log.d(Conf.avatar_channel + "= " + avatarChannel + (verifyAvatarChannel ? " < Correct >" : " < Wrong >"));
             Log.d(Conf.avatar_ajd_channel_id + "= " + avatarAjdChannelId + (verifyAvatarAjdChannelId ? " < Correct >" : " < Wrong >"));
 //            Log.d(Conf.ModifyWLAlternateSolutionFlag + "= " + modifyWL + (verifyModifyWL ? " < Correct >" : " < Wrong >"));
-
-
+            
+            Log.d(Conf.avatar_modiPPSCreditLimit_Control_state + "= " + avatarModiPPSCreditLimitContState + (verifyAvatarModiPPSCreditLimitContState ? " < Correct >" : " < Wrong >"));
             
             writeLogResult(Conf.resourceNameIns_Active, resourceActiveIns, verifyResourceActiveIns);
             writeLogResult(Conf.resourceNameIns_Standby, resourceStanbyIns, verifyResourceStanbyIns);
@@ -753,6 +757,7 @@ public class SmoiMain extends AbstractAF implements IEC02 {
                     && verifyAvataBalancetypePrmmoney
                     && verifyAvatarChannel
                     && verifyAvatarAjdChannelId
+                    && verifyAvatarModiPPSCreditLimitContState
                     ;
 
         } catch (Exception e) {

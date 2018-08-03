@@ -7,7 +7,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import phoebe.eqx.smoi.bean.bmpManageSCPProfile.ManageSCPProfileRes;
 import phoebe.eqx.smoi.bean.bmpQuerySCPProfile.QuerySCPProfileRes;
-import phoebe.eqx.smoi.message.soapmsg.CBSSubstatus;
+import phoebe.eqx.smoi.message.soapmsg.MDResponse;
 import phoebe.eqx.smoi.wsdl.InfoSyncDefines.RequestHeader;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -49,8 +49,8 @@ public class SoapMessageParser {
 				QuerySCPProfileRes model = new QuerySCPProfileRes();
 				saxParser.parse(new InputSource(new StringReader(processMsg)), processQuerySCPProfileRes(model));
 				xmlModel = (T) model;
-			} else if (CBSSubstatus.class.equals(clazz)) {
-				CBSSubstatus model = new CBSSubstatus();
+			} else if (MDResponse.class.equals(clazz)) {
+				MDResponse model = new MDResponse();
 				saxParser.parse(new InputSource(new StringReader(processMsg)), processCBSSubstatus(model));
 				xmlModel = (T) model;
 			}
@@ -188,7 +188,7 @@ public class SoapMessageParser {
 		return d;
 	}
 	
-	private DefaultHandler processCBSSubstatus(final CBSSubstatus cbsSubstatus) {
+	private DefaultHandler processCBSSubstatus(final MDResponse cbsSubstatus) {
 
 		DefaultHandler d = new DefaultHandler() {
 			StringBuilder path = new StringBuilder();

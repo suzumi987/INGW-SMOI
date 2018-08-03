@@ -84,26 +84,34 @@ public class MappingMessage {
 			}
 		}else if (isAVATARProfile) {
 			if (page.equals(ECommand.dispPPSInfo.getCommand())) {
+				
 				msg = SendMessage.QueryE01Destination(af, myAppData);
 				this.setEState(AFState.W_E01_DESTINATION);
+				
 			} else if (page.equals(ECommand.modiPPSValidity.getCommand())) {// Chatl
 																			// 20/09/2017
 				msg = mapModiPPSValidity(myAppData);
-//				this.setEState(AFState.W_EQL);
+				
 			} else if (page.equals(ECommand.modiPPSMultiAttr.getCommand())) {// Chatl
 																				// 20/09/2017
 				msg = mapModiPPSMultiAttrAVATAR(myAppData);
-//				this.setEState(AFState.W_EQL);
+				
 			} else if (page.equals(ECommand.activatePPSSingSub.getCommand())) {// Max
 																			// 16/03/2018
 				msg = mapActivatePPSSingSubAVATAR(myAppData);
-				// this.setEState(AFState.W_EQL);
+				
 			} else if (page.equals(ECommand.setPPSReward.getCommand())) {// AM 
 																		// 24/04/2018
 				msg = mapSetPPSRewardAVATAR(myAppData);
 
-			} else {
+			}  else if (page.equals(ECommand.modiPPSCreditLimit.getCommand())) {// AM 
+																		  // 24/04/2018
+				msg = mapModiPPSCreditLimitAVATAR(myAppData);
+
+			}else {
+				
 				msg = forwardToSMOI(myAppData);
+				
 			}
 		}else if (isBosProfile) {
 			/**
@@ -2257,7 +2265,7 @@ public class MappingMessage {
 	    builder.append("<ins:NeType>DUMMY</ins:NeType>");
 	    builder.append("<ins:OrderNo>"+ssid+"</ins:OrderNo>");
 	    builder.append("<ins:Priority>5</ins:Priority>");
-	    builder.append("<ins:ReqUser>INGW</ins:ReqUser>");
+	    builder.append("<ins:ReqUser>INGW-SMOI</ins:ReqUser>");
 	    builder.append("</ins:RequestHeader>");
 	    builder.append("<ins:RequestParameters>");
 	    builder.append("<ins:Parameter name=\"NO_OF_BSO\" value=\"1\"/>");
@@ -2279,7 +2287,80 @@ public class MappingMessage {
 		return msg;
 	}
 	
-	
+private String mapModiPPSCreditLimitToMD(MyAppData myAppData) {
+		
+		String msg = "";
+		String un = smoi_conf.get(Conf.md_Login_User).get(0);
+		String pw = smoi_conf.get(Conf.md_Login_Password).get(0);
+		
+		SmoiInstance smoiIns = myAppData.getSmoiIns();
+		String ssid = smoiIns.getSsid();
+		String ms = smoiIns.getMsisdn();
+		String increment = smoiIns.getHttpPostValue("increment");
+		StringBuilder builder = new StringBuilder();
+	    builder.append("<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:ins=\"http://soa.comptel.com/2011/02/instantlink\">");
+	    builder.append("<soap:Header>");
+	    builder.append("<wsse:Security soap:mustUnderstand=\"true\" xmlns:wsse=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\">");
+	    builder.append("<wsse:UsernameToken wsu:Id=\"SOAI_req_SOAI\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\">");
+	    builder.append("<wsse:Username>"+un+"</wsse:Username> ");
+	    builder.append("<wsse:Password>"+pw+"</wsse:Password> ");
+	    builder.append("</wsse:UsernameToken>");
+	    builder.append("</wsse:Security>");
+	    builder.append("</soap:Header>");
+	    builder.append("<soap:Body>");
+	    builder.append("<ins:CreateRequest>");
+	    builder.append("<ins:RequestHeader>");
+	    builder.append("<ins:NeType>DUMMY</ins:NeType>");
+	    builder.append("<ins:OrderNo>"+ssid+"</ins:OrderNo>");
+	    builder.append("<ins:Priority>5</ins:Priority>");
+	    builder.append("<ins:ReqUser>INGW-SMOI</ins:ReqUser>");
+	    builder.append("</ins:RequestHeader>");
+	    builder.append("<ins:RequestParameters>");
+	    builder.append("<ins:Parameter name=\"NO_OF_BSO\" value=\"1\"/>");
+	    builder.append("<ins:Parameter name=\"BSO_1\" value=\"CBS_NEGATIVE\"/>");
+	    builder.append("<ins:Parameter name=\"MSG_SEQ_1\" value=\""+ssid+"\"/>");
+	    builder.append("<ins:Parameter name=\"REQ_TYPE_1\" value=\"2\"/>");
+	    builder.append("<ins:Parameter name=\"ERROR_FLAG_1\" value=\"0\"/>");
+	    builder.append("<ins:Parameter name=\"ROLLBACK\" value=\"2\"/>");
+	    builder.append("<ins:Parameter name=\"RE_TRANSMIT\" value=\"0\"/>");
+	    builder.append("<ins:Parameter name=\"MSISDN1\" value=\""+ms+"\"/>");
+	    builder.append("<ins:Parameter name=\"NEGATIVE_BALANCE_1\" value=\""+increment+"\"/>");
+	    builder.append("</ins:RequestParameters>");
+	    builder.append("</ins:CreateRequest>");
+		builder.append("</soap:Body>");
+		builder.append("</soap:Envelope>");
+		
+		msg = builder.toString();
+		this.setEState(AFState.W_MD);
+		return msg;
+	}
+
+	private String mapModiPPSCreditLimitToEQL(MyAppData myAppData) {
+		String msg = "";
+		SmoiInstance smoiIns = myAppData.getSmoiIns();
+		String sgw = smoiIns.getSgw();
+		String ms = smoiIns.getMsisdn();
+		String ssid = smoiIns.getSsid();
+		smoiIns.setAdjustType(AdjustType.QUERY);
+		EqlBsoAdjustCbsValidity<Object> eqlmessage = new EqlBsoAdjustCbsValidity<Object>();
+		eqlmessage.setBwoid(SMOIUtils.createSmoiEQUULEUS(ssid));
+		eqlmessage.setRetransmit("0");
+		eqlmessage.setUser("INGW-SMOI");
+		// set BSO for Query
+		BSONOQuery bsonoQuery = new BSONOQuery();
+		bsonoQuery.setBsoid(SMOIUtils.createSmoiBSOID(sgw, ssid));
+		bsonoQuery.setBso("QUERY_CBS_SUB");
+		bsonoQuery.setReqType("4");
+		bsonoQuery.setQueryType("8");
+		bsonoQuery.setMsgSeq(SMOIUtils.createSmoiEQUULEUS(ssid));
+		bsonoQuery.setMsisdn1(ms);
+		eqlmessage.getBSONOListItem().add(bsonoQuery);
+		
+		Gson gson = new Gson();
+		msg = gson.toJson(eqlmessage);
+		return msg;
+	}
+
 	private String mapSetPPSRewardAVATAR(MyAppData myAppData) {
 		String msg = "";
 		SmoiInstance smoiIns = myAppData.getSmoiIns();
@@ -2716,6 +2797,19 @@ public class MappingMessage {
 		return msg;
 	}
 
+	private String mapModiPPSCreditLimitAVATAR(MyAppData myAppData) {
+		
+		String msg = "";
+		if(this.getEState().equals(AFState.W_EQL) || this.getEState().equals(AFState.W_MD)){
+			msg = mapModiPPSCreditLimitToMD(myAppData);
+			this.setEState(AFState.W_MD);
+		}else{
+			msg = mapModiPPSCreditLimitToEQL(myAppData);
+			this.setEState(AFState.W_EQL);
+		}
+		return msg;
+	}
+	
 	private boolean isNotEmpty(String input) {
 		return null != input && !"".equals(input.trim()) ? true : false;
 	}

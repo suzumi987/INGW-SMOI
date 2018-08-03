@@ -42,6 +42,7 @@ public class SmoiInstance {
     private String adjustType;
     private ArrayList<EQLRequestInstance> eqlRequestInstance;
     
+    
     public boolean isAVATAR() {
         return isAVATAR;
     }
@@ -49,8 +50,6 @@ public class SmoiInstance {
     public void setAVATAR(boolean AVATAR) {
         isAVATAR = AVATAR;
     }
-
-    /////////
 
     private Boolean aBoolean = false;
 
@@ -321,6 +320,5 @@ public class SmoiInstance {
 	public void setEqlRequestInstance(ArrayList<EQLRequestInstance> eqlRequestInstance) {
 		this.eqlRequestInstance = eqlRequestInstance;
 	}
-	
 	
 }

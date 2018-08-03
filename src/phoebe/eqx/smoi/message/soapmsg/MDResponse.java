@@ -1,6 +1,6 @@
 package phoebe.eqx.smoi.message.soapmsg;
 
-public class CBSSubstatus {
+public class MDResponse {
 	//header
 	private String requestId;
 	private String status;

@@ -72,6 +72,7 @@ public enum EResponseCode {
     VALIDITY_BAD("319","INGateway Receive EQL Bad BSO ADJUST_CBS_VALIDITY Response"),
     BALANCE_BAD("319","INGateway Receive EQL Bad BSO ADJUST_CBS_BALANCE Response"),
     FREEUNIT_BAD("319","INGateway Receive EQL Bad BSO ADJUST_CBS_FREEUNIT Response"),
+    QUERY_BAD("319","INGateway Receive EQL Bad BSO QUERY_CBS_SUB Response"),
     BALANCEANDVALIDITY_BAD("319","INGateway Receive EQL Bad BSO ADJUST_CBS_BALANCE_VALIDITY Response"),
     INGATEWAY_RECEIVE_EQL_BSO_ADJUST_CBS_FREEUNIT_RESPONSE_ERROR("319","INGateway Receive EQL BSO ADJUST_CBS_FREEUNIT Response Error"),
     INGATEWAY_RECEIVE_EQL_BSO_ADJUST_CBS_FREEUNIT_RESPONSE_ABORT("319","INGateway Receive EQL BSO ADJUST_CBS_FREEUNIT Response Abort"),
@@ -93,7 +94,8 @@ public enum EResponseCode {
     INGATEWAY_RECEIVE_EQL_BSO_QUERY_CBS_SUB_RESPONSE_REJECT("319", "INGateway Receive EQL BSO QUERY_CBS_SUB Response Reject"),
     INGATEWAY_RECEIVE_EQL_BSO_QUERY_CBS_SUB_RESPONSE_ABORT("319", "INGateway Receive EQL BSO QUERY_CBS_SUB Response Abort"),
     INGATEWAY_RECEIVE_EQL_BSO_QUERY_CBS_SUB_RESPONSE_ERROR("319", "INGateway Receive EQL BSO QUERY_CBS_SUB Response Error"),
-    
+    MSISDM_STATUS_INCORRECT("1001","The MSISDN status is incorrect."),
+    MODIFIED_LESS_THAN_ZERO("1015","The modified subscriber's credit limit cannot be less than 0."),
     
     
     SGSCP_SMOI_Timeout("328", "INGateway Receive SGSCP SMOI Timeout"),
@@ -126,12 +128,19 @@ public enum EResponseCode {
 
     //MD
     ACTIVATING_SUCCESS("000", "Activating subscriber successfully."),
-    INGateway_Receive_MD_BSO_CBS_SUBSTATUS_Response_Error("319", "INGateway Receive MD BSO CBS_SUBSTATUS  Response Error"),
-    INGateway_Receive_MD_BSO_CBS_SUBSTATUS_Response_Reject("319", "INGateway Receive MD BSO CBS_SUBSTATUS  Response Reject"),
-    INGateway_Receive_MD_BSO_CBS_SUBSTATUS_Response_Abort("319", "INGateway Receive MD BSO CBS_SUBSTATUS  Response Abort"),
-    INGateway_Receive_MD_BSO_CBS_SUBSTATUS_Response_Timeout("319", "INGateway Receive MD BSO CBS_SUBSTATUS  Response Timeout"),
+    INGateway_Receive_MD_BSO_CBS_SUBSTATUS_Response_Error("319", "INGateway Receive MD BSO CBS_SUBSTATUS Response Error"),
+    INGateway_Receive_MD_BSO_CBS_SUBSTATUS_Response_Reject("319", "INGateway Receive MD BSO CBS_SUBSTATUS Response Reject"),
+    INGateway_Receive_MD_BSO_CBS_SUBSTATUS_Response_Abort("319", "INGateway Receive MD BSO CBS_SUBSTATUS Response Abort"),
+    INGateway_Receive_MD_BSO_CBS_SUBSTATUS_Response_Timeout("328", "INGateway Receive MD BSO CBS_SUBSTATUS Response Timeout"),
     INGateway_Receive_MD_Bad_BSO_CBS_SUBSTATUS_Response("319", "INGateway Receive MD Bad BSO CBS_SUBSTATUS Response"),
-	INGateway_Receive_MD_ALREADY_ACTIVE("1030", "The subscriber has been already actived."),;
+	INGateway_Receive_MD_ALREADY_ACTIVE("1030", "The subscriber has been already actived."),
+	
+	MODIFIED_NAGATIVE_SUCCESS("000", "Operation succeeded."),
+	INGATEWAY_RECEIVE_MD_BSO_CBS_NEGATIVE_RESPONSE_ERROR("319", "INGateway Receive MD BSO CBS_NEGATIVE Response Error"),
+	INGATEWAY_RECEIVE_MD_BSO_CBS_NEGATIVE_RESPONSE_REJECT("319", "INGateway Receive MD BSO CBS_NEGATIVE Response Reject"),
+	INGATEWAY_RECEIVE_MD_BSO_CBS_NEGATIVE_RESPONSE_ABORT("319", "INGateway Receive MD BSO CBS_NEGATIVE Response Abort"),
+	INGATEWAY_RECEIVE_MD_BSO_CBS_NEGATIVE_RESPONSE_TIMEOUT("328", "INGateway Receive MD BSO CBS_NEGATIVE Response Timeout"),
+	INGATEWAY_RECEIVE_MD_BAD_BSO_CBS_NEGATIVE_RESPONSE("319", "INGateway Receive MD Bad BSO CBS_NEGATIVE Response"),;
 	
     EResponseCode(String _code, String _description) {
         this.code = _code;

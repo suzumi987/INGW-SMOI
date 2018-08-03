@@ -31,6 +31,8 @@ public class BSONOBalanceAndFreeResponse {
 	private  List<FreeUnitItemList> freeUnitItemlist;
 	@SerializedName("FREEUNITADJUSTMENTINFOLIST")
 	private  List<FreeUnitAdjInfoResponse> freeUnitAdjInfolist;
+	@SerializedName("SUBLIFECYCLE")
+	private  SubLifeCycle subLifeCycle;
 	
 	public List<FreeUnitAdjInfoResponse> getFreeUnitAdjInfoListItem() {
         if (freeUnitAdjInfolist == null) {
@@ -65,6 +67,14 @@ public class BSONOBalanceAndFreeResponse {
         }
         return this.lifecyclechginfo;
     }
+	
+	public SubLifeCycle getSubLifeCycle() {
+        if (subLifeCycle == null) {
+        	subLifeCycle = new SubLifeCycle();
+        }
+        return this.subLifeCycle;
+    }
+	
 	public String getBsoid() {
 		return bsoid;
 	}
@@ -142,6 +152,9 @@ public class BSONOBalanceAndFreeResponse {
 	public void setFreeUnitAdjInfolist(List<FreeUnitAdjInfoResponse> freeUnitAdjInfolist) {
 		this.freeUnitAdjInfolist = freeUnitAdjInfolist;
 	}
-	
-	
+
+	public void setSubLifeCycle(SubLifeCycle subLifeCycle) {
+		this.subLifeCycle = subLifeCycle;
+	}
+
 }
