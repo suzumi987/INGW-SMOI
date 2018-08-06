@@ -100,10 +100,9 @@ public class StateWaitMD implements IAFState {
 					maxRetry -= 1;
 					smoiIns.setResourceNameStandbyMaxRetry(Conf.resource_Name_Standby_MD_MaxRetry, maxRetry);
 					smoiIns.setRetry(true);
-
-					// System.out.println("isRetry before send
-					// "+myAppData.getSmoiIns().isRetry());
+				
 					MappingMessage messageFn = new MappingMessage(af);
+					messageFn.setEState(AFState.W_MD);
 					outputMsg = messageFn.CreateMessage(myAppData);
 					String state = messageFn.getEState();
 					inputMsg = "";
@@ -232,7 +231,7 @@ public class StateWaitMD implements IAFState {
 		
 		QueryResponseHeader queryResponseHeader = new QueryResponseHeader();
 		MDResponse resMD = queryResponseHeader.readResponseMD(r.getRawDataMessage());
-		if (resMD != null && resMD.getStatus().trim().equals("9")){
+		if (resMD != null && resMD.getStatus() != null && resMD.getStatus().trim().equals("9")){
 			SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
 					StatAlarm.INGATEWAY_SEND_HTTP_MODIPPSCREDITLIMIT_RESPONSE_SUCCESS, smoiIns);
 			SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
@@ -246,24 +245,16 @@ public class StateWaitMD implements IAFState {
 			SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
 					StatAlarm.INGATEWAY_SEND_HTTP_MODIPPSCREDITLIMIT_RESPONSE_ERROR, smoiIns);
 
-			if(resMD.getSMESSAGE_1() == null && resMD.getStatus().trim() == null ){
-				hmMessage = mapEquinoxReturnCmd(EResponseCode.MODIFIED_NAGATIVE_SUCCESS);
-			}else if(resMD.getStatus().trim() == null){
+			if(resMD.getStatus() == null){
 				hmMessage = mapEquinoxReturnCmd(EResponseCode.INGATEWAY_RECEIVE_MD_BSO_CBS_NEGATIVE_RESPONSE_ERROR);
-			}else if(resMD.getSMESSAGE_1() == null){
-				String log_RESULTCODE = resMD.getStatus().trim();
-				String log_DESC ="";
-				String msg = "<vcrr><res>" + log_RESULTCODE + "</res><desc>" + "</desc></vcrr>";
-				
-				hmMessage = new HashMap<String, String>();
-				hmMessage.put(EMsgTagType.RESPONSE_MESSAGE.getDisplayName(), msg);
-				hmMessage.put(EMsgTagType.RESPONSE_LOG_RES.getDisplayName(), log_RESULTCODE);
-				hmMessage.put(EMsgTagType.RESPONSE_LOG_DESC.getDisplayName(), log_DESC);
 			}else{
 				String log_RESULTCODE = resMD.getStatus().trim();
-				String log_DESC = resMD.getSMESSAGE_1().trim();
-				String msg = "<vcrr><res>" + log_RESULTCODE + "</res><desc>" + log_DESC + "</desc></vcrr>";
+				String log_DESC ="";
+				if(resMD.getSMESSAGE_1() != null){
+					log_DESC = resMD.getSMESSAGE_1().trim();	
+				}
 				
+				String msg = "<vcrr><res>" + log_RESULTCODE + "</res><desc>" + log_DESC + "</desc></vcrr>";
 				hmMessage = new HashMap<String, String>();
 				hmMessage.put(EMsgTagType.RESPONSE_MESSAGE.getDisplayName(), msg);
 				hmMessage.put(EMsgTagType.RESPONSE_LOG_RES.getDisplayName(), log_RESULTCODE);

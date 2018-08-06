@@ -33,21 +33,23 @@ public class EQLUtils {
    			    SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_EQL_BSO_QUERY_CBS_SUB_Request, smoiIns);  
    			    SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_EQL_BSO_QUERY_CBS_SUB_Request, smoiIns);
 	   		  }else{
-	   			  SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_EQL_BSO_ADJUST_CBS_FREEUNIT_Request, smoiIns);  
+	   			SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_EQL_BSO_ADJUST_CBS_FREEUNIT_Request, smoiIns);  
 	   		  }
 	   	  }else if(smoiIns.getAdjustType().equals(AdjustType.BALANCE_AND_VALIDITY)){
-	   		  	  SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_EQL_BSO_ADJUST_CBS_BALANCEANDVALIDITY_Request, smoiIns);  
+	   		  	SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_EQL_BSO_ADJUST_CBS_BALANCEANDVALIDITY_Request, smoiIns);  
 	   	  }else if(smoiIns.getAdjustType().equals(AdjustType.PRMMONEY_AND_FREEUNIT)){
 	   		if(smoiIns.getPage().equals(ECommand.modiPPSMultiAttr.getCommand())){
-	   			  SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_EQL_BSO_ADJUST_CBS_BALANCE_Request, smoiIns);  
-		   		  SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_EQL_BSO_ADJUST_CBS_FREEUNIT_Request, smoiIns);
-	   			  SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_EQL_BSO_QUERY_CBS_SUB_Request, smoiIns);  
-	   			  SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_EQL_BSO_QUERY_CBS_SUB_Request, smoiIns);
+	   			SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_EQL_BSO_ADJUST_CBS_BALANCE_Request, smoiIns);  
+		   		SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_EQL_BSO_ADJUST_CBS_FREEUNIT_Request, smoiIns);
+	   			SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_EQL_BSO_QUERY_CBS_SUB_Request, smoiIns);  
+	   			SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_EQL_BSO_QUERY_CBS_SUB_Request, smoiIns);
 	   		  }else{
-	   			  SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_EQL_BSO_ADJUST_CBS_BALANCE_Request, smoiIns);  
-		   		  SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_EQL_BSO_ADJUST_CBS_FREEUNIT_Request, smoiIns);  
+	   			SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_EQL_BSO_ADJUST_CBS_BALANCE_Request, smoiIns);  
+		   		SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_EQL_BSO_ADJUST_CBS_FREEUNIT_Request, smoiIns);  
 	   		  }
 	   		  
+	   	  }else if(smoiIns.getAdjustType().equals(AdjustType.QUERY)){
+	   		  	SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_EQL_BSO_QUERY_CBS_SUB_Request, smoiIns);
 	   	  }
 	      
 	}

@@ -449,6 +449,7 @@ public class MappingMessage {
 		SmoiInstance smoiIns = myAppData.getSmoiIns();
 		String sgw = smoiIns.getSgw();
 		String ms = smoiIns.getMsisdn();
+		ms = Msisdn.convert(ms, Msisdn.EMsisdnFormat.PATTERN2_0d_8digit);
 		String ssid = smoiIns.getSsid();
 		String flag = smoiIns.getFlag();
 		// select sub command of modiPPSMultiAttr
@@ -549,7 +550,7 @@ public class MappingMessage {
 				            msg = sb.toString();
 						}else{
 							smoiIns.setAdjustType(AdjustType.BALANCE_AND_VALIDITY); //for tag type adjustment.
-							ms = Msisdn.convert(ms, Msisdn.EMsisdnFormat.PATTERN2_0d_8digit);
+//							ms = Msisdn.convert(ms, Msisdn.EMsisdnFormat.PATTERN2_0d_8digit);
 		 					EqlBsoAdjustCbsBalanceAndValidity adjustCbsBalAndVal = new EqlBsoAdjustCbsBalanceAndValidity();
 		 					adjustCbsBalAndVal.setBwoid(SMOIUtils.createSmoiEQUULEUS(ssid));
 		 					adjustCbsBalAndVal.setRetransmit("0");
@@ -621,7 +622,7 @@ public class MappingMessage {
 						// adj balance
 
 							smoiIns.setAdjustType(AdjustType.BALANCE); //for tag type adjustment.
-							ms = Msisdn.convert(ms, Msisdn.EMsisdnFormat.PATTERN2_0d_8digit);
+//							ms = Msisdn.convert(ms, Msisdn.EMsisdnFormat.PATTERN2_0d_8digit);
 		 					
 		 					BSONOBalanceAndFree bsonoBalance = new BSONOBalanceAndFree();
 		 					bsonoBalance.setBsoid(SMOIUtils.createSmoiBSOID(sgw, ssid));
@@ -690,7 +691,7 @@ public class MappingMessage {
 					if( isValidityType && !isBalanceType && !isFreeType){
 						// adj validity
 					    smoiIns.setAdjustType(AdjustType.VALIDITY); //for tag type adjustment.
-					    ms = Msisdn.convert(ms, Msisdn.EMsisdnFormat.PATTERN2_0d_8digit);
+//					    ms = Msisdn.convert(ms, Msisdn.EMsisdnFormat.PATTERN2_0d_8digit);
 						EqlBsoAdjustCbsValidity<Object> eqlmessage = new EqlBsoAdjustCbsValidity<Object>();
 						eqlmessage.setBwoid(SMOIUtils.createSmoiEQUULEUS(ssid));
 						eqlmessage.setRetransmit("0");
@@ -744,7 +745,7 @@ public class MappingMessage {
 							// adj free prmmoney
 
 								smoiIns.setAdjustType(AdjustType.BALANCE); //for tag type adjustment.
-					 			ms = Msisdn.convert(ms, Msisdn.EMsisdnFormat.PATTERN2_0d_8digit);
+//					 			ms = Msisdn.convert(ms, Msisdn.EMsisdnFormat.PATTERN2_0d_8digit);
 					 			BSONOBalanceAndFree bsonoBalance = new BSONOBalanceAndFree();
 					 			bsonoBalance.setBsoid(SMOIUtils.createSmoiBSOID(sgw, ssid));
 					 			bsonoBalance.setBso("ADJUST_CBS_BALANCE");
@@ -824,7 +825,7 @@ public class MappingMessage {
 			 						smoiIns.setAdjustType(AdjustType.FREEUNIT); //for tag type adjustment.
 			 					}
 								
-					 			ms = Msisdn.convert(ms, Msisdn.EMsisdnFormat.PATTERN2_0d_8digit);
+					 			//ms = Msisdn.convert(ms, Msisdn.EMsisdnFormat.PATTERN2_0d_8digit);
 					 			FreeUnitAdjInfo freeUnitAdjInfo = new FreeUnitAdjInfo();
 					 			if (flag.equals("0")) {
 					 				bsonoFreeUnit.setOperType("1");
@@ -874,7 +875,7 @@ public class MappingMessage {
 								}else if(!AdjustType.PRMMONEY_AND_FREEUNIT.equals(smoiIns.getAdjustType())){
 									smoiIns.setAdjustType(AdjustType.FREEUNIT); //for tag type adjustment.
 								}
-					 			ms = Msisdn.convert(ms, Msisdn.EMsisdnFormat.PATTERN2_0d_8digit);
+//					 			ms = Msisdn.convert(ms, Msisdn.EMsisdnFormat.PATTERN2_0d_8digit);
 					 			FreeUnitAdjInfo freeUnitAdjInfo = new FreeUnitAdjInfo();
 					 			if (flag.equals("0")) {
 					 				bsonoFreeUnit.setOperType("1");
@@ -925,7 +926,7 @@ public class MappingMessage {
 		 							smoiIns.setAdjustType(AdjustType.FREEUNIT); //for tag type adjustment.
 		 						}
 								
-					 			ms = Msisdn.convert(ms, Msisdn.EMsisdnFormat.PATTERN2_0d_8digit);
+//					 			ms = Msisdn.convert(ms, Msisdn.EMsisdnFormat.PATTERN2_0d_8digit);
 					 			FreeUnitAdjInfo freeUnitAdjInfo = new FreeUnitAdjInfo();
 					 			if (flag.equals("0")) {
 					 				bsonoFreeUnit.setOperType("1");
@@ -2340,6 +2341,7 @@ private String mapModiPPSCreditLimitToMD(MyAppData myAppData) {
 		SmoiInstance smoiIns = myAppData.getSmoiIns();
 		String sgw = smoiIns.getSgw();
 		String ms = smoiIns.getMsisdn();
+		ms = Msisdn.convert(ms, Msisdn.EMsisdnFormat.PATTERN2_0d_8digit);
 		String ssid = smoiIns.getSsid();
 		smoiIns.setAdjustType(AdjustType.QUERY);
 		EqlBsoAdjustCbsValidity<Object> eqlmessage = new EqlBsoAdjustCbsValidity<Object>();
@@ -2800,7 +2802,7 @@ private String mapModiPPSCreditLimitToMD(MyAppData myAppData) {
 	private String mapModiPPSCreditLimitAVATAR(MyAppData myAppData) {
 		
 		String msg = "";
-		if(this.getEState().equals(AFState.W_EQL) || this.getEState().equals(AFState.W_MD)){
+		if(this.EState != null && (this.EState.equals(AFState.W_EQL) || this.EState.equals(AFState.W_MD))){
 			msg = mapModiPPSCreditLimitToMD(myAppData);
 			this.setEState(AFState.W_MD);
 		}else{

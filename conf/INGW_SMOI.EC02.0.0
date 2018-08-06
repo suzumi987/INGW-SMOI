@@ -70,7 +70,7 @@
         <Resource-Name-Standby-BOS value="SMOI.ES06.BOS" />
         <Resource-Name-Standby-AVATAR value="SMOI.ES06.CBSETOPUP" />
         <Resource-Name-Standby-INS value="SMOI.ES04.INS" />
-        <Resource-Name-Standby-EQL value="SMOI.ES04.EQL" />
+        <Resource-Name-Standby-EQL value="SMOI.ES04.EQL1" />
 
         <Resource-Name-Standby-DS2A-MaxRetry value="1" />
         <Resource-Name-Standby-SMOI_FET-MaxRetry value="1" />
@@ -134,7 +134,7 @@
         <URL-EQL value="https://mint.com" />
 
         <Resource-Name-Active-MD value="SMOI.ES04.MD"/>
-        <Resource-Name-Standby-MD value="SMOI.ES04.MD"/>
+        <Resource-Name-Standby-MD value="SMOI.ES04.MD1"/>
         <Resource-Name-Standby-MD-MaxRetry value="3"/>
         <Tm-MD value="10" />
         <URL-MD value="http://10.252.56.7:44016/ilws/InstantLinkSOA?wsdl" />

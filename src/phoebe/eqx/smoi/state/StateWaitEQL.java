@@ -57,6 +57,7 @@ public class StateWaitEQL implements IAFState {
 					log_RESULTCODE = hmMessage.get(EMsgTagType.RESPONSE_LOG_RES.getDisplayName());
 					log_DESC = hmMessage.get(EMsgTagType.RESPONSE_LOG_DESC.getDisplayName());
 					SendMessage.Client(outputMsg, af, myAppData);
+					nextState = AFState.IDLE;
 				} 
 				else if (page.equals(ECommand.modiPPSMultiAttr.getCommand())) {
 					hmMessage = genMsgHttpResponseModiPPSMultiAttr(af, smoiIns,inputMsg, hmMessage);
@@ -64,6 +65,7 @@ public class StateWaitEQL implements IAFState {
 					log_RESULTCODE = hmMessage.get(EMsgTagType.RESPONSE_LOG_RES.getDisplayName());
 					log_DESC = hmMessage.get(EMsgTagType.RESPONSE_LOG_DESC.getDisplayName());
 					SendMessage.Client(outputMsg, af, myAppData);
+					nextState = AFState.IDLE;
 				}
 				else if (page.equals(ECommand.setPPSReward.getCommand())) {
 					hmMessage = genMsgHttpResponseSetPPSReward(af, smoiIns,inputMsg, hmMessage);
@@ -71,33 +73,24 @@ public class StateWaitEQL implements IAFState {
 					log_RESULTCODE = hmMessage.get(EMsgTagType.RESPONSE_LOG_RES.getDisplayName());
 					log_DESC = hmMessage.get(EMsgTagType.RESPONSE_LOG_DESC.getDisplayName());
 					SendMessage.Client(outputMsg, af, myAppData);
+					nextState = AFState.IDLE;
 				}
 				else if (page.equals(ECommand.modiPPSCreditLimit.getCommand())) {
-					
 					hmMessage = genMsgHttpResponseModiPPSCreditLimit(af, smoiIns,inputMsg, hmMessage);
-					outputMsg = hmMessage.get(EMsgTagType.RESPONSE_MESSAGE.getDisplayName());
-					log_RESULTCODE = hmMessage.get(EMsgTagType.RESPONSE_LOG_RES.getDisplayName());
-					log_DESC = hmMessage.get(EMsgTagType.RESPONSE_LOG_DESC.getDisplayName());
-					if(log_RESULTCODE.equals("1001") || log_RESULTCODE.equals("1015") || log_RESULTCODE.equals("319")){ //error return to http client
-						
+					if(hmMessage != null){
+						outputMsg = hmMessage.get(EMsgTagType.RESPONSE_MESSAGE.getDisplayName());
+						log_RESULTCODE = hmMessage.get(EMsgTagType.RESPONSE_LOG_RES.getDisplayName());
+						log_DESC = hmMessage.get(EMsgTagType.RESPONSE_LOG_DESC.getDisplayName());
 						SendMessage.Client(outputMsg, af, myAppData);
-						
 					}else{
 						// Send request to MD
 						MappingMessage messageFn = new MappingMessage(af);
+						messageFn.setEState(AFState.W_MD);
 						outputMsg = messageFn.CreateMessage(myAppData);
-						String state = messageFn.getEState();
-						inputMsg = "";
-
-						if (state.equals(AFState.W_MD)) {
-							SendMessage.MD(outputMsg, af, myAppData, Conf.resource_Name_Active_MD);
-						}
+						SendMessage.MD(outputMsg, af, myAppData, Conf.resource_Name_Active_MD);
 						nextState = AFState.W_MD;	
 					}
 				}
-		
-				nextState = AFState.IDLE;
-
 			} else if (r.getRawEventType().equals(AFEvent.IncomingEquinox_Error)) {
 				
 					if(smoiIns.getAdjustType().equals(AdjustType.VALIDITY)){
@@ -160,8 +153,6 @@ public class StateWaitEQL implements IAFState {
 				}else if(smoiIns.getAdjustType().equals(AdjustType.QUERY)){
 					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
 							StatAlarm.INGateway_Receive_EQL_BSO_QUERY_CBS_SUB_Response_Reject, smoiIns);
-					hmMessage = mapEquinoxReturnCmd(
-							EResponseCode.INGATEWAY_RECEIVE_EQL_BSO_QUERY_CBS_SUB_RESPONSE_REJECT);
 				}
 				
 				int maxRetry = smoiIns.getResourceNameStandbyMaxRetry(Conf.resourceNameEQL_Standby_MaxRetry);
@@ -199,8 +190,6 @@ public class StateWaitEQL implements IAFState {
 						hmMessage = mapEquinoxReturnCmd(
 								EResponseCode.INGATEWAY_RECEIVE_EQL_BSO_ADJUST_CBS_BALANCEANDVALIDITY_RESPONSE_REJECT);	
 					}else if(smoiIns.getAdjustType().equals(AdjustType.QUERY)){
-						SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
-								StatAlarm.INGateway_Receive_EQL_BSO_QUERY_CBS_SUB_Response_Reject, smoiIns);
 						hmMessage = mapEquinoxReturnCmd(
 								EResponseCode.INGATEWAY_RECEIVE_EQL_BSO_QUERY_CBS_SUB_RESPONSE_REJECT);
 					}
@@ -832,35 +821,35 @@ public class StateWaitEQL implements IAFState {
 		
 		EqlBsoAdjustCbsResponse eqlRes = gson.fromJson(inputMsg,
 				EqlBsoAdjustCbsResponse.class);
-		if (isMissingOmResponseHeaderEQL(eqlRes,page)) {
+		if (isMissingOmModiPPSCreditLimitRes(eqlRes,page)) {
 			    SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
 					StatAlarm.INGateway_Receive_EQL_BAD_BSO_QUERY_CBS_SUB_Response, smoiIns);
 			    SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_HTTP_$s_Response_Error, smoiIns);
 			    hmMessage = mapEquinoxReturnCmd(EResponseCode.QUERY_BAD);
 		   
 		}else{
-			if (eqlRes.getRespstatus().toUpperCase().equals("SUCCESS")) {
-
-				SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
-						StatAlarm.INGateway_Receive_EQL_BSO_QUERY_CBS_SUB_Response, smoiIns);
-				SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
-						StatAlarm.INGATEWAY_SEND_MD_BSO_CBS_NEGATIVE_REQUEST, smoiIns);
-				 // send request to MD
-		   } else {
-			   SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
-						StatAlarm.INGateway_Receive_EQL_BSO_QUERY_CBS_SUB_Response, smoiIns);
-			   SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
-						StatAlarm.INGATEWAY_SEND_HTTP_MODIPPSCREDITLIMIT_RESPONSE_ERROR, smoiIns);
 			   if(customerStateInvalid(eqlRes,af)){
 				   // 1001
 				   hmMessage = mapEquinoxReturnCmd(EResponseCode.MSISDM_STATUS_INCORRECT);
-				   
+				   SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+							StatAlarm.INGateway_Receive_EQL_BSO_QUERY_CBS_SUB_Response, smoiIns);
+				   SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+							StatAlarm.INGATEWAY_SEND_HTTP_MODIPPSCREDITLIMIT_RESPONSE_ERROR, smoiIns);
 			   }else if(smoiIns.getHttpPostValue("increment") != null 
 					   && Integer.parseInt(smoiIns.getHttpPostValue("increment")) < 0){
 				   // 1015
 				   hmMessage = mapEquinoxReturnCmd(EResponseCode.MODIFIED_LESS_THAN_ZERO);
+				   SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+							StatAlarm.INGateway_Receive_EQL_BSO_QUERY_CBS_SUB_Response, smoiIns);
+				   SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+							StatAlarm.INGATEWAY_SEND_HTTP_MODIPPSCREDITLIMIT_RESPONSE_ERROR, smoiIns);
+			   }else{
+				   SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+							StatAlarm.INGateway_Receive_EQL_BSO_QUERY_CBS_SUB_Response, smoiIns);
+				   SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+							StatAlarm.INGATEWAY_SEND_MD_BSO_CBS_NEGATIVE_REQUEST, smoiIns);
+				   // send request to MD 
 			   }
-		   }
 		}
 		return hmMessage;
 	}
@@ -1056,11 +1045,12 @@ public class StateWaitEQL implements IAFState {
 	}
 
 	// Chatl 03/08/2018
-	private boolean isMissingOmResponseHeaderEQL(EqlBsoAdjustCbsResponse eqlRes,String page) {
+	private boolean isMissingOmModiPPSCreditLimitRes(EqlBsoAdjustCbsResponse eqlRes,String page) {
 		boolean isMissingOm = false;
 		String respstatus = eqlRes.getRespstatus();
 		String smessage = eqlRes.getSmessage();
-		if( smessage == null || respstatus == null){
+		String substatus = eqlRes.getBSONOListItem().get(0).getSubLifeCycle().getSubStatus();
+		if( smessage == null || respstatus == null || substatus == null){
 			isMissingOm = true;
 		}
 
@@ -2214,9 +2204,7 @@ public class StateWaitEQL implements IAFState {
 			String stateConf = smoi_conf.get(Conf.avatar_modiPPSCreditLimit_Control_state).get(0);
 			String[] confArray = stateConf.split(",");
 			for(int i=0; i<confArray.length; i++){
-				if(eqlRes.getBSONOListItem().get(0).getSubLifeCycle().getLifeCycleStatusListItem().get(0).getStatusName().trim().equals(confArray[i])
-						|| eqlRes.getBSONOListItem().get(0).getSubLifeCycle().getLifeCycleStatusListItem().get(0).getStatusName().trim().equals(confArray[i])
-						|| eqlRes.getBSONOListItem().get(0).getSubLifeCycle().getLifeCycleStatusListItem().get(0).getStatusName().trim().equals(confArray[i])){
+				if(eqlRes.getBSONOListItem().get(0).getSubLifeCycle().getSubStatus().trim().equals(confArray[i].trim())){
 						   // 1001
 						return true;   
 				}
