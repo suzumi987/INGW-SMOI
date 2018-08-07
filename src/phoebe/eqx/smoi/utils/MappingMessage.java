@@ -2802,7 +2802,7 @@ private String mapModiPPSCreditLimitToMD(MyAppData myAppData) {
 	private String mapModiPPSCreditLimitAVATAR(MyAppData myAppData) {
 		
 		String msg = "";
-		if(this.EState != null && (this.EState.equals(AFState.W_EQL) || this.EState.equals(AFState.W_MD))){
+		if(this.EState != null &&  this.EState.equals(AFState.W_MD)){
 			msg = mapModiPPSCreditLimitToMD(myAppData);
 			this.setEState(AFState.W_MD);
 		}else{
