@@ -2804,7 +2804,7 @@ private String mapModiPPSCreditLimitToMD(MyAppData myAppData) {
 		String msg = "";
 		if(this.EState != null &&  this.EState.equals(AFState.W_MD)){
 			msg = mapModiPPSCreditLimitToMD(myAppData);
-			this.setEState(AFState.W_MD);
+//			this.setEState(AFState.W_MD);
 		}else{
 			msg = mapModiPPSCreditLimitToEQL(myAppData);
 			this.setEState(AFState.W_EQL);
