@@ -177,17 +177,17 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class SOperInfo {
 
-    @XmlElement(name = "_so_nbr", namespace = "http://www.asiainfo.com/obd/CommonComponents.obd", required = true)
+    @XmlElement(name = "_so_nbr", namespace = "http://www.asiainfo.com/obd/CommonComponents.obd", required = true)//, required = true
     protected String soNbr;
-    @XmlElement(name = "_busi_code", namespace = "http://www.asiainfo.com/obd/CommonComponents.obd", required = true)
+    @XmlElement(name = "_busi_code", namespace = "http://www.asiainfo.com/obd/CommonComponents.obd", required = true)//, required = true
     protected String busiCode;
-    @XmlElement(name = "_so_mode", namespace = "http://www.asiainfo.com/obd/CommonComponents.obd", required = true)
+    @XmlElement(name = "_so_mode", namespace = "http://www.asiainfo.com/obd/CommonComponents.obd", required = true)//, required = true
     protected String soMode;
-    @XmlElement(name = "_source_system", namespace = "http://www.asiainfo.com/obd/CommonComponents.obd", required = true)
+    @XmlElement(name = "_source_system", namespace = "http://www.asiainfo.com/obd/CommonComponents.obd", required = true)//, required = true
     protected String sourceSystem;
     @XmlElement(name = "_charge_flag", namespace = "http://www.asiainfo.com/obd/CommonComponents.obd")
     protected Short chargeFlag;
-    @XmlElement(name = "_so_date", namespace = "http://www.asiainfo.com/obd/CommonComponents.obd", required = true)
+    @XmlElement(name = "_so_date", namespace = "http://www.asiainfo.com/obd/CommonComponents.obd", required = true)//, required = true
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar soDate;
     @XmlElement(name = "_cust_id", namespace = "http://www.asiainfo.com/obd/CommonComponents.obd")

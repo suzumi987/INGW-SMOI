@@ -728,20 +728,43 @@ public class StateWaitBSSbroker implements IAFState {
 		StringBuilder sb = new StringBuilder();
 		try{
 			String res = String.valueOf(doSetNegativeBalanceResponse.getSResult().getResultCode());
+//			String _so_nbr = String.valueOf(doSetNegativeBalanceResponse.getSResult().getSoNbr());
+//			String finishdate = String.valueOf(doSetNegativeBalanceResponse.getSResult().getFinishDate());
 			String desc = doSetNegativeBalanceResponse.getSResult().getErrorMsg();
 			if (res.equals("1000000")) {
 				SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(), StatAlarm.INGateway_Receive_BSSBroker_$s_Response, smoiIns);         
 
 				res = "000";
 				desc = "Operation succeeded.";
-			}else{
-				//Raise Stat &  Alarm if res != 1000000
-				SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(), StatAlarm.INGateway_Receive_BSSBroker_$s_Response_Error, smoiIns);         
+				
+				sb.append("<vcrr>");
+				sb.append("<res>").append(res).append("</res>");
+				sb.append("<desc>").append(desc).append("</desc>");
+				sb.append("</vcrr>");
 			}
-			sb.append("<vcrr>");
-			sb.append("<res>").append(res).append("</res>");
-			sb.append("<desc>").append(desc).append("</desc>");
-			sb.append("</vcrr>");
+			
+			 else  if(res.equals("0")){
+					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(), StatAlarm.INGateway_Receive_BSSBroker_Bad_$s_Response, smoiIns);
+					sb.append("<vcrr>");
+					sb.append("<res>319</res>");
+			  		sb.append("<desc>INGateway Receive BSSBroker Bad DoSetNegativeBalance Response</desc>");
+					sb.append("</vcrr>");
+	        }
+			
+			  else {
+	            	//Raise Stat &  Alarm if res != 1000000
+					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(), StatAlarm.INGateway_Receive_BSSBroker_$s_Response_Error, smoiIns);         
+					
+					sb.append("<vcrr>");
+					sb.append("<res>").append(res).append("</res>");
+					sb.append("<desc>").append(desc).append("</desc>");
+					sb.append("</vcrr>");
+				}
+			 
+//			sb.append("<vcrr>");
+//			sb.append("<res>").append(res).append("</res>");
+//			sb.append("<desc>").append(desc).append("</desc>");
+//			sb.append("</vcrr>");
 		
 	    }catch(Exception ex){
 	    	
@@ -1006,7 +1029,7 @@ public class StateWaitBSSbroker implements IAFState {
 	        try{
 	            String res = String.valueOf(doAdjustBalanceResponse.getSResult().getResultCode());
 	            String desc = doAdjustBalanceResponse.getSResult().getErrorMsg();
-	            if (res.equals("1000000")) {
+	             if (res.equals("1000000")) {
 	                SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(), StatAlarm.INGateway_Receive_BSSBroker_$s_Response, smoiIns);
 
 	                res = "000";
@@ -1062,17 +1085,28 @@ public class StateWaitBSSbroker implements IAFState {
 	                sb.append("<pkgebd></pkgebd>");*/
 	                sb.append("</vcrr>");
 
-	            } else {
-	                sb.append("<vcrr>");
-	                sb.append("<res>").append(res).append("</res>");
-	                sb.append("<desc>").append(desc).append("</desc>");
-	                sb.append("</vcrr>");
-
-	                //Raise Stat &  Alarm if res != 1000000
-	                SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(), StatAlarm.INGateway_Receive_BSSBroker_$s_Response_Error, smoiIns);
-
+	            }
+	             else  if(res.equals("0")){
+						SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(), StatAlarm.INGateway_Receive_BSSBroker_Bad_$s_Response, smoiIns);
+						sb.append("<vcrr>");
+						sb.append("<res>319</res>");
+				  		sb.append("<desc>INGateway Receive BSSBroker Bad DoAdjustBalance Response</desc>");
+						sb.append("</vcrr>");
+		        }
+	             
+	            else{
+	            	//Raise Stat &  Alarm if res != 1000000
+					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(), StatAlarm.INGateway_Receive_BSSBroker_$s_Response_Error, smoiIns);         
+					
+					
+					sb.append("<vcrr>");
+					sb.append("<res>").append(res).append("</res>");
+					sb.append("<desc>").append(desc).append("</desc>");
+					sb.append("</vcrr>");
 				}
-	        }catch(Exception ex){
+	           
+	        }
+	        catch(Exception ex){
 		  		sb.append("<vcrr>");
 		  		sb.append("<res>319</res>");
 		  		sb.append("<desc>INGateway Receive BSSBroker Bad "+ smoiIns.getMapCmd() +" Response</desc>");

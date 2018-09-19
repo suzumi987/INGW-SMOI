@@ -44,7 +44,7 @@ public class SmoiLog {
                     + "|INVOKE=" + invokeid
                     + "|MSISDN=" + msisdn
                     + "|COMMAND=" + command
-                    + "|RESSULTCODE=" + resultcode
+                    + "|RESULTCODE=" + resultcode
                     + "|DESC=" + desc
                     + "|RESPONSE_TIME=" + responseTime);
         }

@@ -19,13 +19,13 @@
             <JavaOption value="-Djava.version=1.6" />
             <JavaLibrary value="bfw1.0.jar"/>
 			<JavaLibrary value="commons-lang3-3.1.jar"/>
-			
+			<JavaLibrary value="ec02_library.jar"/>
 			<JavaLibrary value="gson-2.3.2-For-Equinox.jar"/>
 			<JavaLibrary value="guava-17.0.jar"/>
 			<JavaLibrary value="joda-time-2.9.4.jar"/>
 			<JavaLibrary value="validate_4.1.1.jar"/>
 			<JavaLibrary value="eqxmsg_3_4_1.jar"/>
-			
+			<JavaLibrary value="INGW_SMOI-2.7.0-01_01.jar"/>
 
 	<JavaLibrary value="eqxmsg_3_1_13.jar" />
 	<JavaLibrary value="kryo-2.20-all.jar" />

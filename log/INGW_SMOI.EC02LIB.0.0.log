@@ -1,0 +1,77 @@
+INFO|15:52:15|main|EC02Server|-1|EC02 :: Library Version --> null
+INFO|15:52:15|main|EC02Server|-1|application level ready
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|EC02Handler|-1|
+#====> Incoming Message :<EquinoxMessage from="SMOI.E11.0" via="SMOI.E11.0" session="2:SMOI.ES05.HTTP.0" timeout="10" ret="0" diag=""><EquinoxRawData orig="SMOI.ES05.HTTP.0" name="HTTP" invoke="2" type="request" method="POST" url="/" ctype="text/plain" val="page=modiPPSMultiAttr&amp;sgw=smsgw4&amp;ms=66818008356&amp;ssid=263108&amp;flag=1&amp;balance=7&amp;merchant=CHATSIM&amp;smp=5&amp;balanceID=1" to="SMOI.ES00" ret="0" /><EquinoxInstance><value val="" /></EquinoxInstance></EquinoxMessage>
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|EC02Controller|-1|=== >> INCOMING DATA
+-->applicationName  :  SMOI2
+-->session  : 2:SMOI.ES05.HTTP.0
+-->via  : SMOI.E11.0
+-->from  : SMOI.E11.0
+-->diag  : 
+-->state  : IDLE
+-->timeout  : 10
+
+-->rawdata(s)  : 1
+-->raw data index : 0
+	-->raw event type : Unknown
+	-->messsage : 
+	-->val : page=modiPPSMultiAttr&sgw=smsgw4&ms=66818008356&ssid=263108&flag=1&balance=7&merchant=CHATSIM&smp=5&balanceID=1
+	-->ret : 0
+	-->method : POST
+	-->ctype : text/plain
+	-->orig : SMOI.ES05.HTTP.0
+	-->name : HTTP
+	-->invoke : 2
+	-->to : SMOI.ES00
+	-->type : request
+	-->url : /
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|AFProxy|-1|extract instance completed :: 4
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|SmoiMain|78|Attributes Message :ret=0 ,ctyp=text/plain ,type=request ,oid= ,ecode=
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|SmoiMain|169|EventType = IncomingModiPPSMultiAttr
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|AFProxy|-1|extract raw data completed ::3
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|SmoiMain|233|15:52:15 : Current state : IDLE
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|StateIdle|55|Save Request Info:SessionId=2:SMOI.ES05.HTTP.0 ,resourceName=SMOI.ES05.HTTP.0 ,invokeId=2 ,requestTime=1537347135178 ,requestMsg=page=modiPPSMultiAttr&sgw=smsgw4&ms=66818008356&ssid=263108&flag=1&balance=7&merchant=CHATSIM&smp=5&balanceID=1 ,sessionId=2:SMOI.ES05.HTTP.0
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|StateIdle|83|Save Command Info:ms=66818008356 ,page=modiPPSMultiAttr ,sgw=smsgw4 ,ssid=263108 ,startTime=1537347135178
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|StateIdle|92|Command Event is IncomingModiPPSMultiAttr
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|SmoiInstance|177|key=flag,value=1
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|SmoiStatAlarm|44|Send Stat:SMOI Receive HTTP ModiPPSMultiAttr Request
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|EquinoxUtilities|-1|increment stat
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|StateIdle|133|Check Input Parameter: Success!!!
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|StateIdle|164|Don't have scpid
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|SmoiStatAlarm|44|Send Stat:SMOI Send DS2A InquirySubscriber Request
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|EquinoxUtilities|-1|increment stat
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|EquinoxUtilities|-1|write log
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|SmoiMain|240|15:52:15 : Next state : W_DS2A
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|SmoiMain|241|15:52:15 : Ret : 0
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|SmoiMain|242|15:52:15 : Timeout : 15
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|EquinoxUtilities|-1|write log
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|AFProxy|-1|action process completed :: 72
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|AFProxy|-1|construct rawdata completed :: 0
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|AFProxy|-1|compose instance completed :: 74
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|EC02Controller|-1|=== >> OUTGOING DATA
+-->applicationName  :  SMOI2
+-->session  : 2:SMOI.ES05.HTTP.0
+-->via  : SMOI.E11.0
+-->from  : SMOI2.ES00
+-->diag  : 
+-->state  : W_DS2A
+-->timeout  : 15
+
+-->rawdata(s)  : 1
+-->raw data index : 0
+	-->raw event type : Unknown
+	-->messsage : <AVP type="methodVersion"><vals value="6"/></AVP><AVP type="msisdnInfo"><vals value="66818008356"/></AVP>
+	-->ctype : extended
+	-->name : LDAP
+	-->invoke : InquiryMsisdn:2
+	-->to : SMOI2.ES03.DS2A
+	-->oid : 0.0.17.1218.8.7.0
+	-->type : request
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|MessageBuilder|-1|Log called : 2
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|MessageBuilder|-1|Stat called : 2
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|EC02Handler|-1|
+#====> Outgoing Message is:<?xml version="1.0" encoding="tis-620" ?><EquinoxMessage diag="" from="SMOI2.ES00" ret="0" session="2:SMOI.ES05.HTTP.0" via="SMOI.E11.0" timeout="15" ><EquinoxRawData ctype="extended" name="LDAP" invoke="InquiryMsisdn:2" to="SMOI2.ES03.DS2A" oid="0.0.17.1218.8.7.0" type="request" ><AVP type="methodVersion"><vals value="6"/></AVP><AVP type="msisdnInfo"><vals value="66818008356"/></AVP></EquinoxRawData><EquinoxRawData to="SMOI2.E06.0" name="EQLOG" type="noreply" ><log name="LogSummary" value="SESSION=263108|INVOKE=2|MSISDN=66818008356|COMMAND=modiPPSMultiAttr"/><log name="LogDetail" value="SESSIONID=263108|INVOKE=2|STATE=IDLE|MSISDN=66818008356|COMMAND=modiPPSMultiAttr|INPUT=page=modiPPSMultiAttr&amp;sgw=smsgw4&amp;ms=66818008356&amp;ssid=263108&amp;flag=1&amp;balance=7&amp;merchant=CHATSIM&amp;smp=5&amp;balanceID=1|NEXTSTATE=W_DS2A|OUTPUT=&lt;AVP type=&quot;methodVersion&quot;&gt;&lt;vals value=&quot;6&quot;/&gt;&lt;/AVP&gt;&lt;AVP type=&quot;msisdnInfo&quot;&gt;&lt;vals value=&quot;66818008356&quot;/&gt;&lt;/AVP&gt;"/></EquinoxRawData><EquinoxRawData to="SMOI2.E04.0" name="EQSTAT" type="noreply" ><stats name="SMOI Receive HTTP ModiPPSMultiAttr Request" type="increment"/><stats name="SMOI Send DS2A InquirySubscriber Request" type="increment"/></EquinoxRawData><EquinoxInstance><value val="W_DS2A::eJyNkl1vgjAUhv9Lr8UUECTc4dckGcos2S62ZalStRkfyoE5Y/zvKxQ/5mbCFfR9n57T87YHlLFtwSB3k2WK7APiyVf6yXiIbKSh1skNeMyQrRp6V+90Vd1Qu9bZ8xgAXQkbbcTnrcBYD+M05L5PvCLKuZPnWalqJqx20oZY/HakGIPUTNNSLYwt3TBrGngoLc3UVWxJdRnRlVRVKcxpRJNF3bdb12TZYk2TXIr9sRMQ16urxhupGr+2u4O6aDUzpEW2YBNaDo2IN3XbQ4KN9jgI/DYWBIiReZq4VUr2H+DYQjFwCBNhX41VbgSZbDWQWG9kcLdxleRqJwwZlFiWY4t1eTzIafb/hcwB5pm4vWxU0UsaAZNbPdmgT6NokuZ8uT+7HJxnJ3BmV8KM5dkFYNtodnoiorXICtmv7y1Ee2kaMZqcwXVMhB3O9x79rksc0KzOUinDVGpA8f2Hl4/RMFAuKG7dYYdPj1eYdg+TUzQp2COkV6XUpOwQq41qTkkTzJ00wrxBk6MNiOY04crneRv28fgDB95LWg==::1" /></EquinoxInstance></EquinoxMessage>
+DEBUG|15:52:15|2:SMOI.ES05.HTTP.0|EC02Handler|-1|
+-->TIME,total Processing Time(msec) : 187
+-->TIME,application process (msec) :153
+-->TIME,ec02 process(msec) : 34

@@ -12,6 +12,7 @@ public class EQLUtils {
 	public static void writeStatEQL(SmoiInstance smoiIns,AbstractAF af ){
 	      if(smoiIns.getAdjustType().equals(AdjustType.VALIDITY)){
 	   		  if(smoiIns.getPage().equals(ECommand.modiPPSMultiAttr.getCommand())){
+	   			SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_EQL_BSO_ADJUST_CBS_VALIDITY_Request, smoiIns);
 	   			  SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_EQL_BSO_QUERY_CBS_SUB_Request, smoiIns);  
 	   		  }else{
 	   			  SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_EQL_BSO_ADJUST_CBS_VALIDITY_Request, smoiIns);

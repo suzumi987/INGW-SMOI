@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="tis-620" ?>
+<EquinoxMessage diag="" from="SMOI2.ES00" ret="0"
+	session="2072283739:SMOI2.ES05.httpPOST.0" via="SMOI2.E11.0" timeout="5">
+	<EquinoxRawData to="SMOI2.ES04.BSSBROKER" invoke="BSSBroker:2072283739"
+		name="HTTP" ctype="text/xml" type="request">
+		<UriOverride value="/BSSBroker/Gateways/SetNegativeBalance" />
+		<HeaderOverride name="SOAPAction" value="setNegativeBalance" />
+		<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+			<soapenv:Header />
+			<soapenv:Body>
+				<ns2:do_SetNegativeBalance
+					xmlns="http://www.asiainfo.com/obd/CommonComponents.obd" xmlns:ns2="http://www.asiainfo.com/obd/InfoSyncDefines.obd">
+					<ns2:sOper>
+						<_so_nbr>999@123456;20180906;164619;023</_so_nbr>
+						<_busi_code>1037</_busi_code>
+						<_so_mode>IVR</_so_mode>
+						<_source_system>INGW</_source_system>
+						<_charge_flag>1</_charge_flag>
+						<_so_date>2018-09-06T16:46:19.024+07:00</_so_date>
+						<_phone_id>0909500038</_phone_id>
+						<_remark>999</_remark>
+					</ns2:sOper>
+					<ns2:_phone_id>0909500038</ns2:_phone_id>
+					<ns2:_negative_balance>1000</ns2:_negative_balance>
+					<ns2:_notification_flag>0</ns2:_notification_flag>
+					<ns2:_negative_flag>0</ns2:_negative_flag>
+				</ns2:do_SetNegativeBalance>
+			</soapenv:Body>
+		</soapenv:Envelope>
+	</EquinoxRawData>
+	<EquinoxRawData to="SMOI2.E06.0" name="EQLOG" type="noreply">
+		<log name="LogDetail"
+			value="SESSIONID=123456|INVOKE=2072283739|STATE=W_DS2A|MSISDN=66909500038|COMMAND=modiPPSCreditLimit|INPUT=&lt;AVP type=&quot;methodVersion&quot;&gt;&lt;vals value=&quot;6&quot; /&gt;&lt;/AVP&gt;&lt;AVP type=&quot;resultInfo&quot;&gt;&lt;vals value=&quot;66909500038,669330067914491,1,1,,0,,0,5,,5,awn&quot; /&gt;&lt;/AVP&gt;&lt;AVP type=&quot;accountingInfo&quot;&gt;&lt;vals value=&quot;600003,BOSCF,66818310536,3511,,3BOCB103,,&quot; /&gt;&lt;/AVP&gt;&lt;AVP type=&quot;toggledAccountingInfo&quot;&gt;&lt;vals value=&quot;,0,,,,,,,,&quot; /&gt;&lt;/AVP&gt;&lt;AVP type=&quot;prefixAccountingInfo&quot;&gt;&lt;vals value=&quot;0,,,,,,,,&quot; /&gt;&lt;/AVP&gt;|NEXTSTATE=W_BSSbroker|OUTPUT=&lt;UriOverride value=&quot;/BSSBroker/Gateways/SetNegativeBalance&quot; /&gt;&lt;HeaderOverride name=&quot;SOAPAction&quot; value=&quot;setNegativeBalance&quot; /&gt;&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;&lt;soapenv:Header/&gt;&lt;soapenv:Body&gt;&lt;ns2:do_SetNegativeBalance xmlns=&quot;http://www.asiainfo.com/obd/CommonComponents.obd&quot; xmlns:ns2=&quot;http://www.asiainfo.com/obd/InfoSyncDefines.obd&quot;&gt;&lt;ns2:sOper&gt;&lt;_so_nbr&gt;999@123456;20180906;164619;023&lt;/_so_nbr&gt;&lt;_busi_code&gt;1037&lt;/_busi_code&gt;&lt;_so_mode&gt;IVR&lt;/_so_mode&gt;&lt;_source_system&gt;INGW&lt;/_source_system&gt;&lt;_charge_flag&gt;1&lt;/_charge_flag&gt;&lt;_so_date&gt;2018-09-06T16:46:19.024+07:00&lt;/_so_date&gt;&lt;_phone_id&gt;0909500038&lt;/_phone_id&gt;&lt;_remark&gt;999&lt;/_remark&gt;&lt;/ns2:sOper&gt;&lt;ns2:_phone_id&gt;0909500038&lt;/ns2:_phone_id&gt;&lt;ns2:_negative_balance&gt;1000&lt;/ns2:_negative_balance&gt;&lt;ns2:_notification_flag&gt;0&lt;/ns2:_notification_flag&gt;&lt;ns2:_negative_flag&gt;0&lt;/ns2:_negative_flag&gt;&lt;/ns2:do_SetNegativeBalance&gt;&lt;/soapenv:Body&gt;&lt;/soapenv:Envelope&gt;" />
+	</EquinoxRawData>
+	<EquinoxRawData to="SMOI2.E04.0" name="EQSTAT" type="noreply">
+		<stats name="SMOI Receive DS2A InquirySubscriber Response" type="increment" />
+		<stats name="SMOI Send BSSBroker DoSetNegativeBalance Request"
+			type="increment" />
+	</EquinoxRawData>
+	<EquinoxInstance>
+		<value
+			val="W_BSSbroker::eJyNU9tu4jAQ/Rc/G2QnEEjeCIUVUrksQd2HblWZxARrEzvYTilC/HttEi7dtlKSSHbmnBnPnBkfgaS7kio94RsBgiNg/E38oywBAXBQz3H6bs/1AbzQViynIMBd13Ow3+93sIev2JQqRVIDg8Isf0uE3CQXCVssoqGkCdOPLGfa2h0vVxXueT7yu8hs+xWg0n2F+L5fWxRLKhN23E7Xq6yMx5LmlOsaMiHOWSpRypjOiE0TRNP5xGmPItRtb7UuFvNo1bY0ZTJlgk8+Vxl8Tz9BkCumEm7Id+naMOqsU5WW+S+q6r/WbLnp3kCmKLuPC7N3w/kwxMg1BsZ3JZOHqFyrWLI1lUuqCsEVtR3JSWGXQtINex/EsSi5ZjytGvYMEKwf8GISpXorkicqbXkW9axVizTNaPLVF35yJl9wD9lSYTiPhmPoeX3cdzEyvYduF2MILxVU7kb7MtNX15tSxtN3XYS8no87HR9D+9qjEexC85E9By8nI7PSRH4zYQ60Ggxzq3UiXiOqZzQlmr3RkGSEx9QouFZqLc3gynFGUhBsSKYoBBvzM627QbJsJjTbHK4oU4OnwWqwvDMsqZY3At1ly8vtMLnZk4JnK1QoREYJvxK3eWTgZH2Ykvc6xBEs61ls2WFs1YTWCOHWjYXgT7Tfj3c05yfaZBY1ibZY/PrzOh6tmnArTZowpw9NUjTD0yTYQ+QMGoWLovDc6CZke6H/r/t0+gBhD5Iv::2" />
+	</EquinoxInstance>
+</EquinoxMessage>

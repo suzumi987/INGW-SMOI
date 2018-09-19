@@ -144,7 +144,7 @@ public class BOSMessage {
 
     private static String mapSetPPSRewardCmd_Free_Resource_Adjustment(AbstractAF af, MyAppData myAppData, String prmmoney, String prmsm, String prmminute, String prmPoint, String freecalltimes, String rbtSong, String rbtMF, String smDis, String callDis, String rewTariff, String expire, String flag) {
         String msg;
-        msg = BOSMessage.buildSetPPSRewardCmd_Free_Resource_Adjustment(af, myAppData, flag, expire, prmmoney, prmsm, prmminute, freecalltimes);
+        msg = BOSMessage.buildSetPPSRewardCmd_Free_Resource_Adjustment(af, myAppData, flag, expire, prmmoney, prmsm, prmminute, freecalltimes, rbtSong);
         return msg;
     }
 
@@ -507,7 +507,7 @@ public class BOSMessage {
         return msg;
     }
 
-    public static String buildSetPPSRewardCmd_Free_Resource_Adjustment(AbstractAF af, MyAppData myAppData, String flag, String expire, String prmmoney, String prmsm, String prmminute, String freecalltimes) {
+    public static String buildSetPPSRewardCmd_Free_Resource_Adjustment(AbstractAF af, MyAppData myAppData, String flag, String expire, String prmmoney, String prmsm, String prmminute, String freecalltimes,String rbtSong ) {
         HashMap<String, ArrayList<String>> smoi_conf = af.getUtils().getHmWarmConfig();
         String msg;
         SmoiInstance smoiIns = myAppData.getSmoiIns();
@@ -562,7 +562,7 @@ public class BOSMessage {
         }
         //ccrServiceInformation.put("Transparent-Data-1",this.octet.Convert2Octet(merchant));
         //ccrServiceInformation.put("Transparent-Data-2",this.octet.Convert2Octet(service));
-        ccrServiceInformation.put("Transparent-Data-3", "");
+        //ccrServiceInformation.put("Transparent-Data-3", "");
         msgBuilder.append("<Service-Information>")
                 .append("<IN-Information>");
         for (Iterator<Map.Entry<String, String>> i = ccrServiceInformation.entrySet().iterator(); i.hasNext();) {
@@ -627,6 +627,20 @@ public class BOSMessage {
             ccrModifyAccountInfo_freecalltimes.put("Deduct-Type", "1");
             ccrModifyAccountInfo_freecalltimes.put("Measure-Id", "109");
             for (Iterator<Map.Entry<String, String>> i = ccrModifyAccountInfo_freecalltimes.entrySet().iterator(); i.hasNext();) {
+                Map.Entry<String, String> entry = i.next();
+                msgBuilder.append("<").append(entry.getKey())
+                        .append(" value=\"").append(entry.getValue())
+                        .append("\"/>");
+            }
+        }
+        if (rbtSong != null && ! rbtSong.equals("")) {
+            LinkedHashMap<String, String> ccrModifyAccountInfo_rbtSong = new LinkedHashMap<String, String>();
+            ccrModifyAccountInfo_rbtSong.put("Resource-Id", smoi_conf.get(Conf.bos_CCR_Resource_Id_FREERBTSONG).get(0));
+            ccrModifyAccountInfo_rbtSong.put("Modify-Amount", rbtSong);
+            ccrModifyAccountInfo_rbtSong.put("Validity-Amount", "");
+            ccrModifyAccountInfo_rbtSong.put("Deduct-Type", "1");
+            ccrModifyAccountInfo_rbtSong.put("Measure-Id", "109");
+            for (Iterator<Map.Entry<String, String>> i = ccrModifyAccountInfo_rbtSong.entrySet().iterator(); i.hasNext();) {
                 Map.Entry<String, String> entry = i.next();
                 msgBuilder.append("<").append(entry.getKey())
                         .append(" value=\"").append(entry.getValue())

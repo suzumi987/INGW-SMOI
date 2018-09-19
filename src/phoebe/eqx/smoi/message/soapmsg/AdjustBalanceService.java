@@ -25,6 +25,7 @@ import phoebe.eqx.smoi.utils.TestSendToBSSBroker;
 import phoebe.eqx.smoi.wsdl.CommonComponents.FreeResourceList;
 import phoebe.eqx.smoi.wsdl.CommonComponents.SBalance;
 import phoebe.eqx.smoi.wsdl.CommonComponents.SOperInfo;
+import phoebe.eqx.smoi.wsdl.MyNamespaceMapper;
 import phoebe.eqx.smoi.wsdl.InfoSyncDefines.DoAdjustBalance;
 import phoebe.eqx.smoi.wsdl.InfoSyncDefines.DoAdjustBalanceResponse;
 import phoebe.eqx.smoi.wsdl.InfoSyncDefines.ObjectFactory;
@@ -45,6 +46,7 @@ public class AdjustBalanceService {
 //            marshaller.setProperty(javax.xml.bind.Marshaller.JAXB_ENCODING, "UTF-8");
 //            marshaller.setProperty(javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             Marshaller marshaller = JAXBUtils.getMarshaller();
+            marshaller.setProperty("com.sun.xml.internal.bind.namespacePrefixMapper", new MyNamespaceMapper());
             OutputStream outputStream = new ByteArrayOutputStream();
             marshaller.marshal(this.doAdjustBalance, outputStream);
             SoapMessage = outputStream.toString();

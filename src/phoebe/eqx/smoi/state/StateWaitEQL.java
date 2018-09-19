@@ -2,8 +2,8 @@ package phoebe.eqx.smoi.state;
 
 
 import java.util.ArrayList;
-
 import java.util.HashMap;
+
 import org.joda.time.DateTime;
 
 import com.google.gson.Gson;
@@ -12,6 +12,7 @@ import ec02.af.abstracts.AbstractAF;
 import ec02.af.data.EquinoxRawData;
 import ec02.af.interfaces.IAFState;
 import ec02.utils.AppLog;
+import ec02.utils.Log;
 import phoebe.eqx.smoi.bean.MyAppData;
 import phoebe.eqx.smoi.bean.instance.EQLRequestInstance;
 import phoebe.eqx.smoi.bean.instance.SmoiInstance;
@@ -110,7 +111,11 @@ public class StateWaitEQL implements IAFState {
 								EResponseCode.INGATEWAY_RECEIVE_EQL_BSO_ADJUST_CBS_BALANCE_RESPONSE_ERROR);
 					}else if(smoiIns.getAdjustType().equals(AdjustType.FREEUNIT)){
 						SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
-								StatAlarm.INGateway_Receive_EQL_BSO_ADJUST_CBS_FREEUNIT_Response_Error, smoiIns);	
+								StatAlarm.INGateway_Receive_EQL_BSO_ADJUST_CBS_FREEUNIT_Response_Error, smoiIns);
+						SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+								StatAlarm.INGateway_Receive_EQL_BSO_QUERY_CBS_SUB_Response_Error, smoiIns);
+						SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+								StatAlarm.INGateway_Receive_EQL_BSO_QUERY_CBS_SUB_Response_Error, smoiIns);
 						hmMessage = mapEquinoxReturnCmd(
 								EResponseCode.INGATEWAY_RECEIVE_EQL_BSO_ADJUST_CBS_FREEUNIT_RESPONSE_ERROR);
 					}else if(smoiIns.getAdjustType().equals(AdjustType.BALANCE_AND_VALIDITY)){
@@ -140,13 +145,21 @@ public class StateWaitEQL implements IAFState {
 						SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
 								StatAlarm.INGateway_Receive_EQL_BSO_QUERY_CBS_SUB_Response_Reject, smoiIns);
 					}
-				}else if(smoiIns.getAdjustType().equals(AdjustType.BALANCE)
-						|| smoiIns.getAdjustType().equals(AdjustType.PRMMONEY_AND_FREEUNIT)){
+				}else if(smoiIns.getAdjustType().equals(AdjustType.BALANCE)){
 					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
-							StatAlarm.INGateway_Receive_EQL_BSO_ADJUST_CBS_BALANCE_Response_Reject, smoiIns);	
+							StatAlarm.INGateway_Receive_EQL_BSO_ADJUST_CBS_BALANCE_Response_Reject, smoiIns);
+				}else if(smoiIns.getAdjustType().equals(AdjustType.PRMMONEY_AND_FREEUNIT)){
+					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+							StatAlarm.INGateway_Receive_EQL_BSO_ADJUST_CBS_BALANCE_Response_Reject, smoiIns);
+					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+							StatAlarm.INGateway_Receive_EQL_BSO_ADJUST_CBS_FREEUNIT_Response_Reject, smoiIns);
 				}else if(smoiIns.getAdjustType().equals(AdjustType.FREEUNIT)){
 					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
-							StatAlarm.INGateway_Receive_EQL_BSO_ADJUST_CBS_FREEUNIT_Response_Reject, smoiIns);	
+							StatAlarm.INGateway_Receive_EQL_BSO_ADJUST_CBS_FREEUNIT_Response_Reject, smoiIns);
+					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+							StatAlarm.INGateway_Receive_EQL_BSO_QUERY_CBS_SUB_Response_Reject, smoiIns);
+					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+							StatAlarm.INGateway_Receive_EQL_BSO_QUERY_CBS_SUB_Response_Reject, smoiIns);
 				}else if(smoiIns.getAdjustType().equals(AdjustType.BALANCE_AND_VALIDITY)){
 					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
 							StatAlarm.INGateway_Receive_EQL_BSO_ADJUST_CBS_BALANCEANDVALIDITY_Response_Reject, smoiIns);	
@@ -212,15 +225,27 @@ public class StateWaitEQL implements IAFState {
 					}
 					hmMessage = mapEquinoxReturnCmd(
 							EResponseCode.INGATEWAY_RECEIVE_EQL_BSO_ADJUST_CBS_VALIDITY_RESPONSE_ABORT);
-				}else if(smoiIns.getAdjustType().equals(AdjustType.BALANCE)
-						|| smoiIns.getAdjustType().equals(AdjustType.PRMMONEY_AND_FREEUNIT)){
+				}else if(smoiIns.getAdjustType().equals(AdjustType.BALANCE)){
 					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
 							StatAlarm.INGateway_Receive_EQL_BSO_ADJUST_CBS_BALANCE_Response_Abort, smoiIns);	
 					hmMessage = mapEquinoxReturnCmd(
 							EResponseCode.INGATEWAY_RECEIVE_EQL_BSO_ADJUST_CBS_BALANCE_RESPONSE_ABORT);
-				}else if(smoiIns.getAdjustType().equals(AdjustType.FREEUNIT)){
+				}else if(smoiIns.getAdjustType().equals(AdjustType.PRMMONEY_AND_FREEUNIT)){
+					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+							StatAlarm.INGateway_Receive_EQL_BSO_ADJUST_CBS_BALANCE_Response_Abort, smoiIns);	
+					hmMessage = mapEquinoxReturnCmd(
+							EResponseCode.INGATEWAY_RECEIVE_EQL_BSO_ADJUST_CBS_BALANCE_RESPONSE_ABORT);
 					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
 							StatAlarm.INGateway_Receive_EQL_BSO_ADJUST_CBS_FREEUNIT_Response_Abort, smoiIns);	
+					hmMessage = mapEquinoxReturnCmd(
+							EResponseCode.INGATEWAY_RECEIVE_EQL_BSO_ADJUST_CBS_FREEUNIT_RESPONSE_ABORT);
+				}else if(smoiIns.getAdjustType().equals(AdjustType.FREEUNIT)){
+					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+							StatAlarm.INGateway_Receive_EQL_BSO_ADJUST_CBS_FREEUNIT_Response_Abort, smoiIns);
+					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+							StatAlarm.INGateway_Receive_EQL_BSO_QUERY_CBS_SUB_Response_Abort, smoiIns);
+					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+							StatAlarm.INGateway_Receive_EQL_BSO_QUERY_CBS_SUB_Response_Abort, smoiIns);
 					hmMessage = mapEquinoxReturnCmd(
 							EResponseCode.INGATEWAY_RECEIVE_EQL_BSO_ADJUST_CBS_FREEUNIT_RESPONSE_ABORT);
 				}else if(smoiIns.getAdjustType().equals(AdjustType.BALANCE_AND_VALIDITY)){
@@ -251,15 +276,25 @@ public class StateWaitEQL implements IAFState {
 					}
 					hmMessage = mapEquinoxReturnCmd(
 							EResponseCode.INGATEWAY_RECEIVE_EQL_BSO_ADJUST_CBS_VALIDITY_RESPONSE_TIMEOUT);
-				}else if(smoiIns.getAdjustType().equals(AdjustType.BALANCE)
-						|| smoiIns.getAdjustType().equals(AdjustType.PRMMONEY_AND_FREEUNIT)){
+				}else if(smoiIns.getAdjustType().equals(AdjustType.BALANCE)){
 					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
 							StatAlarm.INGateway_Receive_EQL_BSO_ADJUST_CBS_BALANCE_Response_Timeout, smoiIns);	
 					hmMessage = mapEquinoxReturnCmd(
 							EResponseCode.INGATEWAY_RECEIVE_EQL_BSO_ADJUST_CBS_BALANCE_RESPONSE_TIMEOUT);
-				}else if(smoiIns.getAdjustType().equals(AdjustType.FREEUNIT)){
+				}else if(smoiIns.getAdjustType().equals(AdjustType.PRMMONEY_AND_FREEUNIT)){
+					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+							StatAlarm.INGateway_Receive_EQL_BSO_ADJUST_CBS_BALANCE_Response_Timeout, smoiIns);	
 					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
 							StatAlarm.INGateway_Receive_EQL_BSO_ADJUST_CBS_FREEUNIT_Response_Timeout, smoiIns);	
+					hmMessage = mapEquinoxReturnCmd(
+							EResponseCode.INGATEWAY_RECEIVE_EQL_BSO_ADJUST_CBS_BALANCE_RESPONSE_TIMEOUT);
+				}else if(smoiIns.getAdjustType().equals(AdjustType.FREEUNIT)){
+					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+							StatAlarm.INGateway_Receive_EQL_BSO_ADJUST_CBS_FREEUNIT_Response_Timeout, smoiIns);
+					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+							StatAlarm.INGateway_Receive_EQL_BSO_QUERY_CBS_SUB_Response_Timeout, smoiIns);
+					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+							StatAlarm.INGateway_Receive_EQL_BSO_QUERY_CBS_SUB_Response_Timeout, smoiIns);
 					hmMessage = mapEquinoxReturnCmd(
 							EResponseCode.INGATEWAY_RECEIVE_EQL_BSO_ADJUST_CBS_FREEUNIT_RESPONSE_TIMEOUT);
 				}else if(smoiIns.getAdjustType().equals(AdjustType.BALANCE_AND_VALIDITY)){
@@ -319,7 +354,10 @@ public class StateWaitEQL implements IAFState {
 				hmMessage = mapEquinoxReturnCmd(EResponseCode.VALIDITY_BAD);
 
 			} else {
-				if (eqlRes.getRespstatus().toUpperCase().equals("FAIL")
+				if (eqlRes.getRespstatus().toUpperCase().equals("FAIL") 
+						|| eqlRes.getRespstatus().toUpperCase().equals("PROCESS")
+						|| eqlRes.getRespstatus().toUpperCase().equals("CANCEL")
+						|| eqlRes.getRespstatus().toUpperCase().equals("REJECT")
 						|| (eqlRes.getRespstatus().toUpperCase().equals("PARTLYFAIL") && checkPartlyfail(eqlRes.getSmessage()) ) ) {
 
 					writeStatsValidity(eqlRes,af,smoiIns);
@@ -352,6 +390,9 @@ public class StateWaitEQL implements IAFState {
 				}else{
 					
 					if (eqlRes.getRespstatus().toUpperCase().equals("FAIL")
+							|| eqlRes.getRespstatus().toUpperCase().equals("PROCESS")
+							|| eqlRes.getRespstatus().toUpperCase().equals("CANCEL")
+							|| eqlRes.getRespstatus().toUpperCase().equals("REJECT")
 							|| (eqlRes.getRespstatus().toUpperCase().equals("PARTLYFAIL") && checkPartlyfail(eqlRes.getSmessage()) ) ) {
 					
 //						writeStatsReceive(eqlRes,af,smoiIns);
@@ -382,6 +423,9 @@ public class StateWaitEQL implements IAFState {
 
 				}else{
 					if (eqlRes.getRespstatus().toUpperCase().equals("FAIL")
+							|| eqlRes.getRespstatus().toUpperCase().equals("PROCESS")
+							|| eqlRes.getRespstatus().toUpperCase().equals("CANCEL")
+							|| eqlRes.getRespstatus().toUpperCase().equals("REJECT")
 							|| (eqlRes.getRespstatus().toUpperCase().equals("PARTLYFAIL") && checkPartlyfail(eqlRes.getSmessage()) ) ) {
 					
 						writeStatsReceive(eqlRes,af,smoiIns);
@@ -414,12 +458,19 @@ public class StateWaitEQL implements IAFState {
 				if (isMissingOmModiPPSMultiAttrBalAndValRes(eqlRes,page)) {
 					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
 							StatAlarm.INGateway_Receive_EQL_BAD_BSO_ADJUST_CBS_FREEUNIT_Response, smoiIns);
+					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+							StatAlarm.INGateway_Receive_EQL_BAD_BSO_QUERY_CBS_SUB_Response, smoiIns);
+					SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+							StatAlarm.INGateway_Receive_EQL_BAD_BSO_QUERY_CBS_SUB_Response, smoiIns);
 					SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_HTTP_$s_Response_Error, smoiIns);
 					hmMessage = mapEquinoxReturnCmd(EResponseCode.FREEUNIT_BAD);
 
 				}else{
 					
 					if (eqlRes.getRespstatus().toUpperCase().equals("FAIL")
+							|| eqlRes.getRespstatus().toUpperCase().equals("PROCESS")
+							|| eqlRes.getRespstatus().toUpperCase().equals("CANCEL")
+							|| eqlRes.getRespstatus().toUpperCase().equals("REJECT")
 							|| (eqlRes.getRespstatus().toUpperCase().equals("PARTLYFAIL") && checkPartlyfail(eqlRes.getSmessage()) ) ) {
 					
 //						writeStatsReceive(eqlRes,af,smoiIns);
@@ -455,6 +506,9 @@ public class StateWaitEQL implements IAFState {
 
 				}else{
 					if (eqlRes.getRespstatus().toUpperCase().equals("FAIL")
+							|| eqlRes.getRespstatus().toUpperCase().equals("PROCESS")
+							|| eqlRes.getRespstatus().toUpperCase().equals("CANCEL")
+							|| eqlRes.getRespstatus().toUpperCase().equals("REJECT")
 							|| (eqlRes.getRespstatus().toUpperCase().equals("PARTLYFAIL") && checkPartlyfail(eqlRes.getSmessage()) ) ) {
 						
 						writeStatsReceive(eqlRes,af,smoiIns);
@@ -486,6 +540,9 @@ public class StateWaitEQL implements IAFState {
 			}else{
 				
 				if (eqlRes.getRespstatus().toUpperCase().equals("FAIL") 
+						|| eqlRes.getRespstatus().toUpperCase().equals("PROCESS")
+						|| eqlRes.getRespstatus().toUpperCase().equals("CANCEL")
+						|| eqlRes.getRespstatus().toUpperCase().equals("REJECT")
 						|| (eqlRes.getRespstatus().toUpperCase().equals("PARTLYFAIL") 
 								&& checkPartlyfail(eqlRes.getSmessage())) ) {
 				
@@ -572,6 +629,9 @@ public class StateWaitEQL implements IAFState {
 
 			} else {
 				if (eqlRes.getRespstatus().toUpperCase().trim().equals("FAIL")
+						|| eqlRes.getRespstatus().toUpperCase().trim().equals("PROCESS")
+						|| eqlRes.getRespstatus().toUpperCase().trim().equals("CANCEL")
+						|| eqlRes.getRespstatus().toUpperCase().trim().equals("REJECT")
 						|| (eqlRes.getRespstatus().toUpperCase().trim().equals("PARTLYFAIL") && checkPartlyfail(eqlRes.getSmessage()) ) ) {
 
 					writeStatsValidity(eqlRes,af,smoiIns);
@@ -605,6 +665,9 @@ public class StateWaitEQL implements IAFState {
 				}else{
 					
 					if (eqlRes.getRespstatus().toUpperCase().trim().equals("FAIL")
+							|| eqlRes.getRespstatus().toUpperCase().trim().equals("PROCESS")
+							|| eqlRes.getRespstatus().toUpperCase().trim().equals("CANCEL")
+							|| eqlRes.getRespstatus().toUpperCase().trim().equals("REJECT")
 							|| (eqlRes.getRespstatus().toUpperCase().trim().equals("PARTLYFAIL") && checkPartlyfail(eqlRes.getSmessage()) ) ) {
 					
 						writeStatsReceive(eqlRes,af,smoiIns);
@@ -631,6 +694,9 @@ public class StateWaitEQL implements IAFState {
 
 				}else{
 					if (eqlRes.getRespstatus().toUpperCase().trim().equals("FAIL")
+							|| eqlRes.getRespstatus().toUpperCase().trim().equals("PROCESS")
+							|| eqlRes.getRespstatus().toUpperCase().trim().equals("CANCEL")
+							|| eqlRes.getRespstatus().toUpperCase().trim().equals("REJECT")
 							|| (eqlRes.getRespstatus().toUpperCase().trim().equals("PARTLYFAIL") && checkPartlyfail(eqlRes.getSmessage()) ) ) {
 					
 						writeStatsReceive(eqlRes,af,smoiIns);
@@ -662,6 +728,9 @@ public class StateWaitEQL implements IAFState {
 
 			}else{
 				if (eqlRes.getRespstatus().toUpperCase().trim().equals("FAIL")
+						|| eqlRes.getRespstatus().toUpperCase().trim().equals("PROCESS")
+						|| eqlRes.getRespstatus().toUpperCase().trim().equals("CANCEL")
+						|| eqlRes.getRespstatus().toUpperCase().trim().equals("REJECT")
 						|| (eqlRes.getRespstatus().toUpperCase().trim().equals("PARTLYFAIL") && checkPartlyfail(eqlRes.getSmessage()) ) ) {
 					
 					writeStatsReceive(eqlRes,af,smoiIns);
@@ -695,6 +764,9 @@ public class StateWaitEQL implements IAFState {
 				}else{
 					
 					if (eqlRes.getRespstatus().toUpperCase().trim().equals("FAIL")
+							|| eqlRes.getRespstatus().toUpperCase().trim().equals("PROCESS")
+							|| eqlRes.getRespstatus().toUpperCase().trim().equals("CANCEL")
+							|| eqlRes.getRespstatus().toUpperCase().trim().equals("REJECT")
 							|| (eqlRes.getRespstatus().toUpperCase().trim().equals("PARTLYFAIL") && checkPartlyfail(eqlRes.getSmessage()) ) ) {
 					
 						writeStatsReceive(eqlRes,af,smoiIns);
@@ -726,6 +798,9 @@ public class StateWaitEQL implements IAFState {
 			}else{
 				
 				if (eqlRes.getRespstatus().toUpperCase().trim().equals("FAIL") 
+						|| eqlRes.getRespstatus().toUpperCase().trim().equals("PROCESS")
+						|| eqlRes.getRespstatus().toUpperCase().trim().equals("CANCEL")
+						|| eqlRes.getRespstatus().toUpperCase().trim().equals("REJECT")
 						|| (eqlRes.getRespstatus().toUpperCase().trim().equals("PARTLYFAIL") 
 								&& checkPartlyfail(eqlRes.getSmessage()))) {
 				
@@ -819,16 +894,29 @@ public class StateWaitEQL implements IAFState {
 		Gson gson = new Gson();
 		String page = smoiIns.getPage();
 		
-		EqlBsoAdjustCbsResponse eqlRes = gson.fromJson(inputMsg,
-				EqlBsoAdjustCbsResponse.class);
+		EqlBsoAdjustCbsResponse eqlRes = gson.fromJson(inputMsg, EqlBsoAdjustCbsResponse.class);
+		
 		if (isMissingOmModiPPSCreditLimitRes(eqlRes,page)) {
+			//case bad 
 			    SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
 					StatAlarm.INGateway_Receive_EQL_BAD_BSO_QUERY_CBS_SUB_Response, smoiIns);
 			    SmoiStatAlarm.incrementStats(af, smoiIns.getPage(), StatAlarm.INGateway_Send_HTTP_$s_Response_Error, smoiIns);
 			    hmMessage = mapEquinoxReturnCmd(EResponseCode.QUERY_BAD);
 		   
-		}else{
-			   if(customerStateInvalid(eqlRes,af)){
+
+		}
+
+		
+		else {
+			   //case success from EQL
+			   if((eqlRes.getBSONOListItem() != null && eqlRes.getBSONOListItem().get(0).getBsoStatus() != null && ! eqlRes.getBSONOListItem().get(0).getBsoStatus().trim().equals("Success")) 
+					   || (eqlRes.getRespstatus() != null  && ! eqlRes.getRespstatus().trim().equals("Success"))){
+				   hmMessage = mapEquinoxReturnCmd(EResponseCode.INGATEWAY_RECEIVE_EQL_BSO_QUERY_CBS_SUB_RESPONSE_ERROR);
+				   SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+							StatAlarm.INGateway_Receive_EQL_BSO_QUERY_CBS_SUB_Response_Error, smoiIns);
+				   SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
+							StatAlarm.INGATEWAY_SEND_HTTP_MODIPPSCREDITLIMIT_RESPONSE_ERROR, smoiIns);
+			   }else if(customerStateInvalid(eqlRes,af)){
 				   // 1001
 				   hmMessage = mapEquinoxReturnCmd(EResponseCode.MSISDM_STATUS_INCORRECT);
 				   SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
@@ -1045,17 +1133,29 @@ public class StateWaitEQL implements IAFState {
 	}
 
 	// Chatl 03/08/2018
-	private boolean isMissingOmModiPPSCreditLimitRes(EqlBsoAdjustCbsResponse eqlRes,String page) {
+	private boolean isMissingOmModiPPSCreditLimitRes(EqlBsoAdjustCbsResponse eqlRes , String page) {
 		boolean isMissingOm = false;
-		String respstatus = eqlRes.getRespstatus();
-		String smessage = eqlRes.getSmessage();
-		String substatus = eqlRes.getBSONOListItem().get(0).getSubLifeCycle().getSubStatus();
-		if( smessage == null || respstatus == null || substatus == null){
+		String respstatus = null,smessage = null, substatus= null ;
+			try {
+				
+				respstatus = eqlRes.getRespstatus();
+				smessage = eqlRes.getSmessage();
+				substatus = eqlRes.getBSONOListItem().get(0).getSubLifeCycle().getSubStatus();
+			} catch (Exception e) {
+				// TODO: handle exception
+				Log.d("Cannot Check mandatory");
+				return true;
+			}
+			
+		if( smessage == null || respstatus == null || substatus == null ){
 			isMissingOm = true;
 		}
-
+		
 		return isMissingOm;
 	}
+	
+	
+	
 	
 	// Chatl 14/03/2018
 	private boolean isMissingOmModiPPSValidityRes(EqlBsoAdjustCbsValidityResponse eqlRes,String page) {
@@ -1971,7 +2071,8 @@ public class StateWaitEQL implements IAFState {
 			int bsoSize = eqlRes.getBSONOListItem().size();
 			for(int bsoIndex = 0 ; bsoIndex < bsoSize ; bsoIndex++){
 				
-				if(eqlRes.getBSONOListItem().get(bsoIndex).getBsoStatus().toUpperCase().trim().equals("SUCCESS")){
+				if(eqlRes.getBSONOListItem().get(bsoIndex).getBsoStatus() != null &&
+						eqlRes.getBSONOListItem().get(bsoIndex).getBsoStatus().toUpperCase().trim().equals("SUCCESS")){
 					
 					if(eqlRes.getBSONOListItem().get(bsoIndex).getBso().trim().equals("ADJUST_CBS_VALIDITY")){
 						SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
@@ -1999,15 +2100,16 @@ public class StateWaitEQL implements IAFState {
 		private void writeStatsPrmmoneyAndFree(EqlBsoAdjustCbsResponse eqlRes,AbstractAF af,SmoiInstance smoiIns){
 			int bsoSize = eqlRes.getBSONOListItem().size();
 			for(int bsoIndex = 0 ; bsoIndex < bsoSize ; bsoIndex++){
-				if(eqlRes.getBSONOListItem().get(bsoIndex).getBsoStatus().toUpperCase().trim().equals("SUCCESS")){
+				if(eqlRes.getBSONOListItem().get(bsoIndex).getBsoStatus() != null &&
+						eqlRes.getBSONOListItem().get(bsoIndex).getBsoStatus().toUpperCase().trim().equals("SUCCESS")){
 					
 					if(eqlRes.getBSONOListItem().get(bsoIndex).getBso().trim().equals("ADJUST_CBS_BALANCE")){
 						SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
 								StatAlarm.INGateway_Receive_EQL_BSO_ADJUST_CBS_BALANCE_Response, smoiIns);
-					}else if(eqlRes.getBSONOListItem().get(bsoIndex).getBso().trim().equals("ADJUST_CBS_FREEUNIT")){ 
+					}else if(eqlRes.getBSONOListItem().get(bsoIndex).getBso().trim().equals("ADJUST_CBS_FREEUNIT")){
 						SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
 								StatAlarm.INGateway_Receive_EQL_BSO_ADJUST_CBS_FREEUNIT_Response, smoiIns);
-					}else if(eqlRes.getBSONOListItem().get(bsoIndex).getBso().trim().equals("QUERY_CBS_SUB")){ 
+					}else if(eqlRes.getBSONOListItem().get(bsoIndex).getBso().trim().equals("QUERY_CBS_SUB")){
 						SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
 								StatAlarm.INGateway_Receive_EQL_BSO_QUERY_CBS_SUB_Response, smoiIns);
 					}
@@ -2035,9 +2137,10 @@ public class StateWaitEQL implements IAFState {
 			for(int bsoIndex = 0 ; bsoIndex < bsoSize ; bsoIndex++){
 				 if(smoiIns.getAdjustType().equals(AdjustType.FREEUNIT)){
 					 
-    				if(eqlRes.getBSONOListItem().get(bsoIndex).getBsoStatus().toUpperCase().trim().equals("SUCCESS")){
+    				if(eqlRes.getBSONOListItem().get(bsoIndex).getBsoStatus() != null &&
+    						eqlRes.getBSONOListItem().get(bsoIndex).getBsoStatus().toUpperCase().trim().equals("SUCCESS")){
     					
-    					if(eqlRes.getBSONOListItem().get(bsoIndex).getBso().trim().equals("ADJUST_CBS_FREEUNIT")){ 
+    					if(eqlRes.getBSONOListItem().get(bsoIndex).getBso().trim().equals("ADJUST_CBS_FREEUNIT")){
     						SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
     								StatAlarm.INGateway_Receive_EQL_BSO_ADJUST_CBS_FREEUNIT_Response, smoiIns);
     					}else if(eqlRes.getBSONOListItem().get(bsoIndex).getBso().trim().equals("QUERY_CBS_SUB")){ 
@@ -2054,12 +2157,13 @@ public class StateWaitEQL implements IAFState {
 					 
 				 }else if(smoiIns.getAdjustType().equals(AdjustType.BALANCE)){
 					 
-					if(eqlRes.getBSONOListItem().get(bsoIndex).getBsoStatus().toUpperCase().trim().equals("SUCCESS")){
+					if( eqlRes.getBSONOListItem().get(bsoIndex).getBsoStatus() != null &&
+							eqlRes.getBSONOListItem().get(bsoIndex).getBsoStatus().toUpperCase().trim().equals("SUCCESS")){
 						
-						if(eqlRes.getBSONOListItem().get(bsoIndex).getBso().trim().equals("ADJUST_CBS_FREEUNIT")){ 
+						if(eqlRes.getBSONOListItem().get(bsoIndex).getBso().trim().equals("ADJUST_CBS_BALANCE")){
     						SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
     								StatAlarm.INGateway_Receive_EQL_BSO_ADJUST_CBS_BALANCE_Response, smoiIns);
-    					}else if(eqlRes.getBSONOListItem().get(bsoIndex).getBso().trim().equals("QUERY_CBS_SUB")){ 
+    					}else if(eqlRes.getBSONOListItem().get(bsoIndex).getBso().trim().equals("QUERY_CBS_SUB")){
     						SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
     								StatAlarm.INGateway_Receive_EQL_BSO_QUERY_CBS_SUB_Response, smoiIns);
     					}
@@ -2072,7 +2176,8 @@ public class StateWaitEQL implements IAFState {
 					 
 				 }else if(smoiIns.getAdjustType().equals(AdjustType.BALANCE_AND_VALIDITY)){
 					 
-					if(eqlRes.getBSONOListItem().get(bsoIndex).getBsoStatus().toUpperCase().trim().equals("SUCCESS")){
+					if(eqlRes.getBSONOListItem().get(bsoIndex).getBsoStatus() != null &&
+							eqlRes.getBSONOListItem().get(bsoIndex).getBsoStatus().toUpperCase().trim().equals("SUCCESS")){
 							SmoiStatAlarm.incrementStats(af, smoiIns.getMapCmd(),
 									StatAlarm.INGateway_Receive_EQL_BSO_ADJUST_CBS_BALANCEANDVALIDITY_Response, smoiIns);
 					}else{

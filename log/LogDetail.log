@@ -1,0 +1,1 @@
+SESSIONID=263108|INVOKE=2|STATE=IDLE|MSISDN=66818008356|COMMAND=modiPPSMultiAttr|INPUT=page=modiPPSMultiAttr&sgw=smsgw4&ms=66818008356&ssid=263108&flag=1&balance=7&merchant=CHATSIM&smp=5&balanceID=1|NEXTSTATE=W_DS2A|OUTPUT=<AVP type="methodVersion"><vals value="6"/></AVP><AVP type="msisdnInfo"><vals value="66818008356"/></AVP>

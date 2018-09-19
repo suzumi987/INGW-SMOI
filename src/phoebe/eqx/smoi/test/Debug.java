@@ -39,16 +39,19 @@ public class Debug {
             reqMessage += str;
         }
         in.close();
-        in = new BufferedReader(new FileReader("./conf/INGW_SMOI.EC02.0.0"));
+        in = new BufferedReader(new FileReader("./conf/SMOI2.EC02.SMOI.0"));
         //		in = new BufferedReader(new FileReader("conf/srfp2.EC02.srfp2.0"));
         while ((temp = in.readLine()) != null) {
             conf += temp;
         }
         in.close();
         String[] a = {"INGW_SMOI", "SMOI", "0", conf};
+        
         EC02Server.main(a);
         EC02Handler handler = new EC02Handler();
+        System.out.println("xx");
         System.out.println(handler.verifyAFConfig(conf));
+        
         String output = handler.handle(reqMessage, 1024 * 1000 * 1000);
         System.out.println(output);
 

@@ -173,7 +173,7 @@ public class StateWaitBOS implements IAFState {
                     if (page.equals(ECommand.setPPSReward.getCommand())) {
                         balance = smoiIns.getHttpPostValue("balance");
                         prmmoney = smoiIns.getHttpPostValue("prmMoney");
-                        prmsm = smoiIns.getHttpPostValue("prmSm");
+                        prmsm = smoiIns.getHttpPostValue("prmSM");
                         prmminute = smoiIns.getHttpPostValue("prmMinute");
                         point = smoiIns.getHttpPostValue("prmPoint");
                         freecall = smoiIns.getHttpPostValue("freeCallTimes");

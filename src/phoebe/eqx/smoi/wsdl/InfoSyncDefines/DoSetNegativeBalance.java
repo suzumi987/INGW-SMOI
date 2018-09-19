@@ -5,9 +5,7 @@
 // Generated on: 2015.04.01 at 04:26:27 PM ICT 
 //
 
-
 package phoebe.eqx.smoi.wsdl.InfoSyncDefines;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -79,6 +77,8 @@ import phoebe.eqx.smoi.wsdl.CommonComponents.SOperInfo;
  * 
  * 
  */
+ 
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "sOper",
@@ -93,9 +93,9 @@ import phoebe.eqx.smoi.wsdl.CommonComponents.SOperInfo;
 @XmlRootElement(name = "do_SetNegativeBalance", namespace = "http://www.asiainfo.com/obd/InfoSyncDefines.obd")
 public class DoSetNegativeBalance {
 
-    @XmlElement(namespace = "http://www.asiainfo.com/obd/InfoSyncDefines.obd", required = true)
+    @XmlElement(name = "sOper"  ,namespace = "http://www.asiainfo.com/obd/InfoSyncDefines.obd",required = true) //required = true
     protected SOperInfo sOper;
-    @XmlElement(name = "_phone_id", namespace = "http://www.asiainfo.com/obd/InfoSyncDefines.obd", required = true)
+    @XmlElement(name = "_phone_id", namespace = "http://www.asiainfo.com/obd/InfoSyncDefines.obd",required = true) // required = true
     protected String phoneId;
     @XmlElement(name = "_negative_balance", namespace = "http://www.asiainfo.com/obd/InfoSyncDefines.obd")
     protected long negativeBalance;

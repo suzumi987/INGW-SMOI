@@ -158,7 +158,7 @@ import phoebe.eqx.smoi.wsdl.CommonComponents.SOperInfo;
 @XmlRootElement(name = "do_AdjustBalance", namespace = "http://www.asiainfo.com/obd/InfoSyncDefines.obd")
 public class DoAdjustBalance {
 
-    @XmlElement(namespace = "http://www.asiainfo.com/obd/InfoSyncDefines.obd", required = true)
+    @XmlElement(name = "sOper" , namespace = "http://www.asiainfo.com/obd/InfoSyncDefines.obd", required = true)
     protected SOperInfo sOper;
     @XmlElement(name = "_adjust_type", namespace = "http://www.asiainfo.com/obd/InfoSyncDefines.obd")
     protected short adjustType;

@@ -1,0 +1,2 @@
+SMOI Receive HTTP ModiPPSMultiAttr Request
+SMOI Send DS2A InquirySubscriber Request

@@ -69,11 +69,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class SResultDescription {
 
-    @XmlElement(name = "_so_nbr", namespace = "http://www.asiainfo.com/obd/CommonComponents.obd", required = true)
+    @XmlElement(name = "_so_nbr", namespace = "http://www.asiainfo.com/obd/CommonComponents.obd", required = true)//, required = true
     protected String soNbr;
     @XmlElement(name = "_bos_so_nbr", namespace = "http://www.asiainfo.com/obd/CommonComponents.obd")
     protected long bosSoNbr;
-    @XmlElement(name = "_finish_date", namespace = "http://www.asiainfo.com/obd/CommonComponents.obd", required = true)
+    @XmlElement(name = "_finish_date", namespace = "http://www.asiainfo.com/obd/CommonComponents.obd", required = true)//, required = true
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar finishDate;
     @XmlElement(name = "_result_code", namespace = "http://www.asiainfo.com/obd/CommonComponents.obd")

@@ -2,6 +2,6 @@
 <configuration>
 <reload-conf-interval value="60" />
 <service-resources>
-<service name="smoi">INGW_SMOI.EC02.0.0</service>
+<service name="smoi">SMOI1.EC02.SMOI.0</service>
 </service-resources>
 </configuration>

@@ -12,10 +12,13 @@ import java.io.OutputStream;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import com.sun.xml.internal.bind.marshaller.NamespacePrefixMapper;
+
 import ec02.exception.MessageParserException;
 import ec02.utils.Log;
 import phoebe.eqx.smoi.utils.HeaderMessage;
 import phoebe.eqx.smoi.utils.JAXBUtils;
+import phoebe.eqx.smoi.wsdl.MyNamespaceMapper;
 import phoebe.eqx.smoi.wsdl.InfoSyncDefines.DoSetNegativeBalance;
 import phoebe.eqx.smoi.wsdl.InfoSyncDefines.DoSetNegativeBalanceResponse;
 import phoebe.eqx.smoi.wsdl.InfoSyncDefines.ObjectFactory;
@@ -34,7 +37,9 @@ public class SetNegativeBalanceService {
 //            javax.xml.bind.Marshaller marshaller = jaxbCtx.createMarshaller();
 //            marshaller.setProperty(javax.xml.bind.Marshaller.JAXB_ENCODING, "UTF-8"); // NOI18N
 //            marshaller.setProperty(javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        	
         	Marshaller marshaller = JAXBUtils.getMarshaller();
+        	marshaller.setProperty("com.sun.xml.internal.bind.namespacePrefixMapper", new MyNamespaceMapper());
         	OutputStream outputStream = new ByteArrayOutputStream();
             marshaller.marshal(this.doSetNegativeBalance, outputStream);
             SoapMessage = outputStream.toString();

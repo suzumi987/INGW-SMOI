@@ -766,7 +766,7 @@ public class MappingMessage {
 					 				}
 					 			} else if (flag.equals("1")) {
 					 				bsonoBalance.setOperType("2S");
-					 				adjustmentinfolistBalance.setBalanceId(freeresourcesID);
+					 				
 					 			}
 					 			
 					 			adjustmentinfolistBalance.setAdjustmentAmout(String.valueOf(Math.abs(Long.parseLong(prmmoney))));
@@ -836,7 +836,7 @@ public class MappingMessage {
 						 			  }
 					 			} else if (flag.equals("1")) {
 					 				bsonoFreeUnit.setOperType("2S");
-					 				freeUnitAdjInfo.setFreeUnitInstanceId(freeresourcesID);
+					 				
 					 			}
 					 			
 					 			freeUnitAdjInfo.setFreeUnitId(smoi_conf.get(Conf.freeUnitId_PRMSM).get(0));
@@ -886,7 +886,7 @@ public class MappingMessage {
 						 			  }
 					 			} else if (flag.equals("1")) {
 					 				bsonoFreeUnit.setOperType("2S");
-					 				freeUnitAdjInfo.setFreeUnitInstanceId(freeresourcesID);
+					 				
 					 			}
 					 			
 					 			freeUnitAdjInfo.setFreeUnitId(smoi_conf.get(Conf.freeUnitId_PRMMINUTE).get(0));
@@ -905,7 +905,7 @@ public class MappingMessage {
 					 			if(!merchant.trim().equals("")){
 					 				bsonoFreeUnit.setRemark(merchant);	
 					 			}
-					 			if(bsonoFreeUnit.getFreeunitadjustmentinfolist() == null){
+					 			if(bsonoFreeUnit.getFreeunitadjustmentinfolist().size() <= 1 ){
 					 				adjustCbs.getBSONOListItem().add(bsonoFreeUnit);
 					 				
 					 			}
@@ -937,7 +937,7 @@ public class MappingMessage {
 						 			  }
 					 			} else if (flag.equals("1")) {
 					 				bsonoFreeUnit.setOperType("2S");
-					 				freeUnitAdjInfo.setFreeUnitInstanceId(freeresourcesID);
+					 				
 					 			}
 					 			
 					 			freeUnitAdjInfo.setFreeUnitId(smoi_conf.get(Conf.freeUnitId_FREERBTSONG).get(0));
@@ -957,7 +957,7 @@ public class MappingMessage {
 					 				bsonoFreeUnit.setRemark(merchant);	
 					 			}
 					 			
-					 			if(bsonoFreeUnit.getFreeunitadjustmentinfolist() == null){
+					 			if(bsonoFreeUnit.getFreeunitadjustmentinfolist().size() <= 1){
 					 				adjustCbs.getBSONOListItem().add(bsonoFreeUnit);
 					 			}
 					 			Gson gson = new Gson();
@@ -1110,6 +1110,7 @@ public class MappingMessage {
 
 		SetNegativeBalanceService setNegativeBalanceService = new SetNegativeBalanceService();
 		msg = setNegativeBalanceService.buildSoapMessage(doSetNegativeBalance);
+	//	System.out.println(msg);
 		this.setEState(AFState.W_BSSbroker);
 		smoiIns.setMapCmd("do_SetNegativeBalance");
 		return msg;
@@ -2322,10 +2323,10 @@ private String mapModiPPSCreditLimitToMD(MyAppData myAppData) {
 	    builder.append("<ins:Parameter name=\"MSG_SEQ_1\" value=\""+ssid+"\"/>");
 	    builder.append("<ins:Parameter name=\"REQ_TYPE_1\" value=\"2\"/>");
 	    builder.append("<ins:Parameter name=\"ERROR_FLAG_1\" value=\"0\"/>");
+	    builder.append("<ins:Parameter name=\"NEGATIVE_BALANCE_1\" value=\""+increment+"\"/>");
 	    builder.append("<ins:Parameter name=\"ROLLBACK\" value=\"2\"/>");
 	    builder.append("<ins:Parameter name=\"RE_TRANSMIT\" value=\"0\"/>");
 	    builder.append("<ins:Parameter name=\"MSISDN1\" value=\""+ms+"\"/>");
-	    builder.append("<ins:Parameter name=\"NEGATIVE_BALANCE_1\" value=\""+increment+"\"/>");
 	    builder.append("</ins:RequestParameters>");
 	    builder.append("</ins:CreateRequest>");
 		builder.append("</soap:Body>");
@@ -2630,7 +2631,7 @@ private String mapModiPPSCreditLimitToMD(MyAppData myAppData) {
 				 				}
 				 			} else if (flag.equals("1")) {
 				 				bsonoBalance.setOperType("2S");
-				 				adjustmentinfolistBalance.setBalanceId(freeresourcesID);
+				 				
 				 			}
 				 			
 				 			adjustmentinfolistBalance.setAdjustmentAmout(String.valueOf(Math.abs(Long.parseLong(prmmoney))));
@@ -2723,7 +2724,7 @@ private String mapModiPPSCreditLimitToMD(MyAppData myAppData) {
 					 			  }
 				 			} else if (flag.equals("1")) {
 				 				bsonoFreeUnit.setOperType("2S");
-				 				freeUnitAdjInfo.setFreeUnitInstanceId(freeresourcesID);
+				 				
 				 			}
 				 			
 				 			freeUnitAdjInfo.setFreeUnitId(smoi_conf.get(Conf.freeUnitId_PRMMINUTE).get(0));
@@ -2761,7 +2762,7 @@ private String mapModiPPSCreditLimitToMD(MyAppData myAppData) {
 					 			  }
 				 			} else if (flag.equals("1")) {
 				 				bsonoFreeUnit.setOperType("2S");
-				 				freeUnitAdjInfo.setFreeUnitInstanceId(freeresourcesID);
+				 				
 				 			}
 				 			
 				 			freeUnitAdjInfo.setFreeUnitId(smoi_conf.get(Conf.freeUnitId_FREERBTSONG).get(0));

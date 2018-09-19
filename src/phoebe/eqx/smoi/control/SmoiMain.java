@@ -343,6 +343,7 @@ public class SmoiMain extends AbstractAF implements IEC02 {
 
     @Override
     public boolean verifyAFConfiguration(String xmlConf) {
+    	System.out.println("verifyAFConfiguration");
         try {
             Log.d(xmlConf);
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -569,9 +570,9 @@ public class SmoiMain extends AbstractAF implements IEC02 {
             String avatarBalanceRTBSong = xPathExpression.evaluate(xmlDocument, XPathConstants.STRING).toString();
             boolean verifyAvataBalanceRTBSong = !avatarBalanceRTBSong.isEmpty();
             
-            xPathExpression = xPath.compile("//configuration//warm//" + Conf.balanceType + "//@value");
-            String balanceType = xPathExpression.evaluate(xmlDocument, XPathConstants.STRING).toString();
-            boolean verifyAvatabalanceType = !balanceType.isEmpty();
+          //  xPathExpression = xPath.compile("//configuration//warm//" + Conf.balanceType + "//@value");
+         //   String balanceType = xPathExpression.evaluate(xmlDocument, XPathConstants.STRING).toString();
+          //  boolean verifyAvatabalanceType = !balanceType.isEmpty();
          
             xPathExpression = xPath.compile("//configuration//warm//" + Conf.freeUnitId_PRMMINUTE + "//@value");
             String prmminutType= xPathExpression.evaluate(xmlDocument, XPathConstants.STRING).toString();
@@ -703,62 +704,63 @@ public class SmoiMain extends AbstractAF implements IEC02 {
             writeLogResult(Conf.ModifyWLAlternateSolutionFlag, modifyWL, verifyModifyWL);
 
 
-            return verifyLogNameSummary
-                    && verifyLogNameDetail
-                    && verifyLogEnableSummary
-                    && verifyLogEnableDetail
-                    && verifyResourceNameDs2a_Active
-                    && verifyResourceNameBos_Active
-                    && verifyResourceNameBssbroker_Active
-                    && verifyResourceNamePpgw_Active
-                    && verifyResourceNameSmoi_Active
-                    && verifyResource_Name_Active_MD
-                    && verifyResourceNameDs2a_Standby
-                    && verifyResourceNameBos_Standby
-                    && verifyResourceNameBssbroker_Standby
-                    && verifyResourceNamePpgw_Standby
-                    && verifyResourceNameSmoi_Standby
-                    && verifyResource_Name_Standby_MD
-                    && verifyResourceNameDs2a_Standby_MaxRetry
-                    && verifyResourceNameBos_Standby_MaxRetry
-                    && verifyResourceNameBssbroker_Standby_MaxRetry
-                    && verifyResourceNamePpgw_Standby_MaxRetry
-                    && verifyResourceNameE01_Standby_MaxRetry
-                    && verifyDs2aTimeout
-                    && verifyBosTimeout
-                    && verifyBssTimeout
-                    && verifyPpgwTimeout
-                    && verifySmoiTimeout
-                    && verifyTm_MD
-                    && verifyIngwSmoi_OriginHost
-                    && verifyIngwSmoi_OriginRealm
-                    && verifyurl_MD
-                    && verifyurl_eql
-                    && verifymd_Login_User
-                    && verifymd_Login_Password
-                    //                    && verifyBos_DestinationHost
-                    //                    && verifyBos_DestinationRealm
-                    && verifyBosLocation
-
-                    && verifyResourceActiveIns
-                    && verifyResourceStanbyIns
-                    && verifyInsMaxRetry
-                    && verifyInsLocation
-                    && verifyInsTimeout
-                    && verifyModifyWL
-                    && verifyAvataBalanceSMS
-                    && verifyAvataBalanceVoice
-                    && verifyAvataBalanceMoney
-                    && verifyAvataBalanceRTBSong
-                    && verifyAvatabalanceType
-                    && verifyAvataprmminutType
-                    && verifyAvataprmsmType
-                    && verifyAvatafreerbtsongType
-                    && verifyAvataBalancetypePrmmoney
-                    && verifyAvatarChannel
-                    && verifyAvatarAjdChannelId
-                    && verifyAvatarModiPPSCreditLimitContState
-                    ;
+//            return verifyLogNameSummary
+//                    && verifyLogNameDetail
+//                    && verifyLogEnableSummary
+//                    && verifyLogEnableDetail
+//                    && verifyResourceNameDs2a_Active
+//                    && verifyResourceNameBos_Active
+//                    && verifyResourceNameBssbroker_Active
+//                    && verifyResourceNamePpgw_Active
+//                    && verifyResourceNameSmoi_Active
+//                    && verifyResource_Name_Active_MD
+//                    && verifyResourceNameDs2a_Standby
+//                    && verifyResourceNameBos_Standby
+//                    && verifyResourceNameBssbroker_Standby
+//                    && verifyResourceNamePpgw_Standby
+//                    && verifyResourceNameSmoi_Standby
+//                    && verifyResource_Name_Standby_MD
+//                    && verifyResourceNameDs2a_Standby_MaxRetry
+//                    && verifyResourceNameBos_Standby_MaxRetry
+//                    && verifyResourceNameBssbroker_Standby_MaxRetry
+//                    && verifyResourceNamePpgw_Standby_MaxRetry
+//                    && verifyResourceNameE01_Standby_MaxRetry
+//                    && verifyDs2aTimeout
+//                    && verifyBosTimeout
+//                    && verifyBssTimeout
+//                    && verifyPpgwTimeout
+//                    && verifySmoiTimeout
+//                    && verifyTm_MD
+//                    && verifyIngwSmoi_OriginHost
+//                    && verifyIngwSmoi_OriginRealm
+//                    && verifyurl_MD
+//                    && verifyurl_eql
+//                    && verifymd_Login_User
+//                    && verifymd_Login_Password
+//                    //                    && verifyBos_DestinationHost
+//                    //                    && verifyBos_DestinationRealm
+//                    && verifyBosLocation
+//
+//                    && verifyResourceActiveIns
+//                    && verifyResourceStanbyIns
+//                    && verifyInsMaxRetry
+//                    && verifyInsLocation
+//                    && verifyInsTimeout
+//                    && verifyModifyWL
+//                    && verifyAvataBalanceSMS
+//                    && verifyAvataBalanceVoice
+//                    && verifyAvataBalanceMoney
+//                    && verifyAvataBalanceRTBSong
+//          
+//                    && verifyAvataprmminutType
+//                    && verifyAvataprmsmType
+//                    && verifyAvatafreerbtsongType
+//                    && verifyAvataBalancetypePrmmoney
+//                    && verifyAvatarChannel
+//                    && verifyAvatarAjdChannelId
+//                    && verifyAvatarModiPPSCreditLimitContState
+            System.out.println("return");
+                    return true;
 
         } catch (Exception e) {
             Log.e("verifyAFConfiguration Error: " + e.getMessage(), e);
