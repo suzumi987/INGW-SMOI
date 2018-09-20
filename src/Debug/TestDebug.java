@@ -3,10 +3,13 @@ package Debug;
 import ec02.exception.MessageParserException;
 import org.xml.sax.SAXException;
 
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.xpath.XPathExpressionException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 public class TestDebug extends Testamentor {
@@ -21,7 +24,7 @@ public class TestDebug extends Testamentor {
 //    	BufferedReader in = new BufferedReader(new FileReader("msg\\2-E01.xml"));
 //    	BufferedReader in = new BufferedReader(new FileReader("msg\\3-BOS.xml"));
 //    	BufferedReader in = new BufferedReader(new FileReader("msg\\4-AME.xml"));
-
+		
 		pathScn = "\\";
 
 		testCaseList.add("msgFree.xml");
